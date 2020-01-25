@@ -27,6 +27,7 @@
         <JUnitParams.version>1.1.1</JUnitParams.version>
         <commons-collections4.version>4.1</commons-collections4.version>
         <javax.el.version>3.0.0</javax.el.version>
+        <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -90,7 +91,6 @@
                 <version>${javax.el.version}</version>
             </dependency>
 
-
             <!--TESTING -->
             <dependency>
                 <groupId>junit</groupId>
@@ -124,5 +124,31 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
