@@ -107,6 +107,25 @@ public class RulesValidatorImplTest {
                 .errorAtIndexHasFieldValue(1, 120L);
     }
 
+    @Test
+    public void should_raise_exception_with_given_parameters() {
+        //given
+        String message = "any message";
+        String fieldName = "any_field_name";
+        String value = "any_value";
+
+        //when
+        when(sut).raiseError(message, fieldName, value);
+
+        //then
+        assertThat(caughtException())
+                .isInstanceOf(ApplicationValidationException.class)
+                .hasErrorsSize(1)
+                .errorAtIndexHasMessage(0, message)
+                .errorAtIndexHasFieldName(0, fieldName)
+                .errorAtIndexHasFieldValue(0, value);
+    }
+
 
     @Data
     private static class OneField {

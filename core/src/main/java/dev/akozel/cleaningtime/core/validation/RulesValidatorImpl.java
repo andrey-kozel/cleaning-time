@@ -37,6 +37,17 @@ public class RulesValidatorImpl implements RulesValidator {
         }
     }
 
+    @Override
+    public void raiseError(String message, String field, Object value) {
+        ValidationError error = new ValidationError();
+        error.setMessage(message);
+        error.setField(field);
+        error.setValue(value);
+        ValidationResult result = new ValidationResult();
+        result.appendError(error);
+        throw new ApplicationValidationException(result);
+    }
+
     private <T> ValidationResult buildResult(Set<ConstraintViolation<T>> violations) {
         List<ValidationError> errors = violations
                 .stream()
