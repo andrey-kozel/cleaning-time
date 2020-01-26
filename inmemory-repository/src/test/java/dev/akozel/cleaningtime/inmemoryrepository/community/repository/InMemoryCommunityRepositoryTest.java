@@ -1,7 +1,7 @@
 package dev.akozel.cleaningtime.inmemoryrepository.community.repository;
 
 import dev.akozel.cleaningtime.core.community.domain.Community;
-import dev.akozel.cleaningtime.inmemoryrepository.community.helper.CommunityIdGenerationHelper;
+import dev.akozel.cleaningtime.inmemoryrepository.helper.IdGenerationHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -19,7 +19,7 @@ public class InMemoryCommunityRepositoryTest {
     private static final Integer NEXT_ID = 432534;
 
     @Mock
-    private CommunityIdGenerationHelper communityIdGenerationHelper;
+    private IdGenerationHelper idGenerationHelper;
     @InjectMocks
     private InMemoryCommunityRepository sut;
 
@@ -30,7 +30,7 @@ public class InMemoryCommunityRepositoryTest {
         Community validCommunity = Community.builder()
                 .name(VALID_COMMUNITY_NAME)
                 .build();
-        given(communityIdGenerationHelper.generateId())
+        given(idGenerationHelper.generateId())
                 .willReturn(NEXT_ID);
 
         //when
@@ -47,7 +47,7 @@ public class InMemoryCommunityRepositoryTest {
         Community validCommunity = Community.builder()
                 .name(VALID_COMMUNITY_NAME)
                 .build();
-        given(communityIdGenerationHelper.generateId())
+        given(idGenerationHelper.generateId())
                 .willReturn(NEXT_ID);
 
         //when

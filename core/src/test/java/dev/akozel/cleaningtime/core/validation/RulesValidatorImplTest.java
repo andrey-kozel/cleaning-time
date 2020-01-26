@@ -23,7 +23,7 @@ public class RulesValidatorImplTest {
 
 
     @Test
-    public void should_fill_path_to_incorrect_field_when_invalid_object_comes() {
+    public void should_fill_path_to_incorrect_field_when_object_is_invalid() {
         //given
         OneField tooShortString = new OneField();
         tooShortString.setSomeString(TOO_SHORT_STRING_VALUE);
@@ -39,7 +39,7 @@ public class RulesValidatorImplTest {
     }
 
     @Test
-    public void should_fill_full_path_to_incorrect_inner_object_when_invalid_object_comes() {
+    public void should_fill_full_path_to_incorrect_inner_object_when_object_is_invalid() {
         //given
         InnersObjectValidation nullObjectAtTheLowLevel = InnersObjectValidation.builder()
                 .innersObject(InnersObjectValidation.builder()
@@ -59,7 +59,7 @@ public class RulesValidatorImplTest {
     }
 
     @Test
-    public void should_fill_incorrect_value_to_the_value_field_of_object() {
+    public void should_fill_incorrect_value_to_the_value_field_of_validation_error() {
         //given
         OneField tooShortString = new OneField();
         tooShortString.setSomeString(TOO_SHORT_STRING_VALUE);
@@ -75,7 +75,7 @@ public class RulesValidatorImplTest {
     }
 
     @Test
-    public void should_fill_correct_message_when_error_happens() {
+    public void should_fill_appropriate_message_when_object_is_invalid() {
         //given
         OneField tooShortString = new OneField();
         tooShortString.setSomeString(TOO_SHORT_STRING_VALUE);

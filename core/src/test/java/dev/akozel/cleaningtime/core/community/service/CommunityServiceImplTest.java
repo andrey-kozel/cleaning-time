@@ -9,15 +9,11 @@ import junitparams.JUnitParamsRunner;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static com.googlecode.catchexception.apis.BDDCatchException.caughtException;
-import static com.googlecode.catchexception.apis.BDDCatchException.when;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.BDDMockito.given;
@@ -31,7 +27,6 @@ public class CommunityServiceImplTest {
     private static final Community VALID_COMMUNITY = Community.builder()
             .name("SOME_VALID_COMMUNITY_NAME")
             .build();
-    private static final Integer NULL_COMMUNITY_ID = null;
     private static final Integer ANY_VALID_COMMUNITY_ID = 67543;
 
     @Rule
@@ -41,8 +36,6 @@ public class CommunityServiceImplTest {
     private CommunityRepository communityRepository;
     @Mock
     private RulesValidator rulesValidator;
-    @Captor
-    private ArgumentCaptor<Community> argumentCaptor;
     @InjectMocks
     private CommunityServiceImpl sut;
 
@@ -54,10 +47,7 @@ public class CommunityServiceImplTest {
         //then
         then(communityRepository)
                 .should()
-                .save(argumentCaptor.capture());
-
-        assertThat(argumentCaptor.getValue())
-                .isEqualTo(VALID_COMMUNITY);
+                .save(VALID_COMMUNITY);
     }
 
     @Test
@@ -76,9 +66,10 @@ public class CommunityServiceImplTest {
     }
 
     @Test
-    public void should_throw_an_exception_on_invalid_input() {
+    public void should_not_save_community_when_community_is_invalid() {
         //given
         Community invalidCommunity = Community.builder()
+                .name(null)
                 .build();
         willThrow(ApplicationValidationException.class)
                 .given(rulesValidator)
@@ -90,8 +81,9 @@ public class CommunityServiceImplTest {
 
         //then
         assertThat(BDDCatchException.caughtException())
-                .isInstanceOf(ApplicationValidationException.class)
-                .hasNoCause();
+                .isInstanceOf(ApplicationValidationException.class);
+        then(communityRepository)
+                .shouldHaveNoInteractions();
     }
 
     @Test
@@ -109,35 +101,6 @@ public class CommunityServiceImplTest {
         assertThat(actual)
                 .isNotNull()
                 .isSameAs(anyCommunity);
-    }
-
-    @Test
-    public void should_return_null_when_community_is_missing() {
-        //given
-        given(communityRepository.get(ANY_VALID_COMMUNITY_ID))
-                .willReturn(NULL_COMMUNITY);
-
-        //when
-        Community actual = sut.get(ANY_VALID_COMMUNITY_ID);
-
-        //then
-        assertThat(actual)
-                .isNull();
-    }
-
-    @Test
-    public void should_throw_exception_when_id_is_null() {
-        //given
-        willThrow(new ApplicationValidationException(null))
-                .given(communityRepository)
-                .get(NULL_COMMUNITY_ID);
-
-        //when
-        when(sut).get(NULL_COMMUNITY_ID);
-
-        //then
-        assertThat(caughtException())
-                .isInstanceOf(ApplicationValidationException.class);
     }
 
 }

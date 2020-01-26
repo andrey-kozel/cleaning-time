@@ -1,4 +1,4 @@
-package dev.akozel.cleaningtime.inmemoryrepository.community.helper;
+package dev.akozel.cleaningtime.inmemoryrepository.helper;
 
 /**
  * IdGenerationHelper.
@@ -7,7 +7,7 @@ package dev.akozel.cleaningtime.inmemoryrepository.community.helper;
  *
  * @author Andrey Kozel
  */
-public interface CommunityIdGenerationHelper {
+public interface IdGenerationHelper {
 
     Integer generateId();
 
