@@ -32,4 +32,11 @@ public class CommunityServiceImpl implements CommunityService {
         return communityId;
     }
 
+    public Community get(Integer communityId) {
+        if (communityId == null) {
+            rulesValidator.raiseError("Community id should be present", "communityId", null);
+        }
+        return communityRepository.get(communityId);
+    }
+
 }

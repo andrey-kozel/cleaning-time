@@ -13,4 +13,6 @@ public interface CommunityRepository {
 
     Integer save(Community community);
 
+    Community get(Integer communityId);
+
 }

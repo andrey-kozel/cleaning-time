@@ -11,4 +11,6 @@ public interface RulesValidator {
 
     <T> void validate(T entityForValidation);
 
+    void raiseError(String message, String field, Object value);
+
 }

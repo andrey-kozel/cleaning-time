@@ -4,13 +4,15 @@
    http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.akozel</groupId>
+    <groupId>dev.akozel</groupId>
     <artifactId>cleaning-time</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
 
     <modules>
         <module>core</module>
+        <module>inmemory-repository</module>
+        <module>java-client</module>
     </modules>
 
     <properties>
