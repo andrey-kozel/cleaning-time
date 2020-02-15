@@ -3,7 +3,16 @@ package dev.akozel.cleaningtime.rest.community.converter;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.rest.community.dto.CommunityDto;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+/**
+ * CommunityDtoConverter. Converts communities to its DTO
+ * <p>
+ * Date: 15/02/2020
+ *
+ * @author Andrey Kozel
+ */
+@Component
 public class CommunityDtoConverter implements Converter<Community, CommunityDto> {
 
     @Override

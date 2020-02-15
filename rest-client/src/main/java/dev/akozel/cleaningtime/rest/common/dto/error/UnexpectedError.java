@@ -5,6 +5,13 @@ import lombok.Data;
 
 import java.util.Map;
 
+/**
+ * UnexpectedError.
+ * <p>
+ * Date: 15/02/2020
+ *
+ * @author Andrey Kozel
+ */
 @Data
 public class UnexpectedError {
 

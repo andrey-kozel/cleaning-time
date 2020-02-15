@@ -26,6 +26,8 @@
         <catch-exception.version>1.4.4</catch-exception.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <JUnitParams.version>1.1.1</JUnitParams.version>
         <commons-collections4.version>4.1</commons-collections4.version>
         <javax.el.version>3.0.0</javax.el.version>

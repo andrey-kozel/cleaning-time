@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * ApplicationValidationExceptionHandler. Handler for exceptions from the service layer
+ * <p>
+ * Date: 15/02/2020
+ *
+ * @author Andrey Kozel
+ */
 @ControllerAdvice
 public class ApplicationValidationExceptionHandler extends ResponseEntityExceptionHandler {
 

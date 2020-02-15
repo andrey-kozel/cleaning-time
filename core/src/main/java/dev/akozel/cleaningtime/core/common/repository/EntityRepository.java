@@ -1,7 +1,12 @@
 package dev.akozel.cleaningtime.core.common.repository;
 
-import dev.akozel.cleaningtime.core.community.domain.Community;
-
+/**
+ * EntityRepository.
+ * <p>
+ * Date: 15/012/2020
+ * @param <T> - type of the entity
+ * @author Andrey Kozel
+ */
 public interface EntityRepository<T> {
 
     T get(Integer communityId);

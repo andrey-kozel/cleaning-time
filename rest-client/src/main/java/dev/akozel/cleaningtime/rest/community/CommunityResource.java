@@ -16,6 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * CommunityResource. Base resource for communities
+ * <p>
+ * Date: 15/02/2020
+ *
+ * @author Andrey Kozel
+ */
 @RestController
 @RequestMapping(path = "communities")
 @Validated
