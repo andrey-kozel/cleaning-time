@@ -3,6 +3,13 @@ package dev.akozel.cleaningtime.rest.common.dto.error;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+/**
+ * ValidationErrorDto.
+ * <p>
+ * Date: 15/02/2020
+ *
+ * @author Andrey Kozel
+ */
 @Data
 public class ValidationErrorDto {
 

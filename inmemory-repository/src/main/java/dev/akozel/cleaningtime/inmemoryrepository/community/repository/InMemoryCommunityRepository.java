@@ -2,7 +2,7 @@ package dev.akozel.cleaningtime.inmemoryrepository.community.repository;
 
 import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
-import dev.akozel.cleaningtime.inmemoryrepository.community.helper.CommunityIdGenerationHelper;
+import dev.akozel.cleaningtime.inmemoryrepository.helper.IdGenerationHelper;
 
 import javax.inject.Named;
 import java.util.ArrayList;
@@ -21,15 +21,15 @@ public class InMemoryCommunityRepository implements CommunityRepository {
 
     private static final List<Community> COMMUNITIES = new ArrayList<>();
 
-    private CommunityIdGenerationHelper communityIdGenerationHelper;
+    private IdGenerationHelper idGenerationHelper;
 
-    public InMemoryCommunityRepository(CommunityIdGenerationHelper communityIdGenerationHelper) {
-        this.communityIdGenerationHelper = communityIdGenerationHelper;
+    public InMemoryCommunityRepository(IdGenerationHelper idGenerationHelper) {
+        this.idGenerationHelper = idGenerationHelper;
     }
 
     @Override
     public Integer save(Community community) {
-        Integer id = communityIdGenerationHelper.generateId();
+        Integer id = idGenerationHelper.generateId();
         community.setId(id);
         COMMUNITIES.add(community);
         return id;

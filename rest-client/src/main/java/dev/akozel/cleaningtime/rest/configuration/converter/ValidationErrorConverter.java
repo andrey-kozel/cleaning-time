@@ -10,6 +10,13 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * ValidationErrorConverter. Converter for validation errors
+ * <p>
+ * Date: 15/02/2020
+ *
+ * @author Andrey Kozel
+ */
 @Component
 public class ValidationErrorConverter implements Converter<ValidationResult, ValidationResultDto> {
 

@@ -8,6 +8,13 @@ import org.springframework.context.ApplicationContext;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * EntityExistsValidator. validates if entity exists
+ * <p>
+ * Date: 15/02/2020
+ *
+ * @author Andrey Kozel
+ */
 public class EntityExistsValidator implements ConstraintValidator<EntityExists, Integer> {
 
     private ApplicationContext applicationContext;
