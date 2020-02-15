@@ -4,6 +4,7 @@ import dev.akozel.cleaningtime.core.validation.domain.ValidationError;
 import dev.akozel.cleaningtime.core.validation.domain.ValidationResult;
 import dev.akozel.cleaningtime.core.validation.exception.ApplicationValidationException;
 
+import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
  *
  * @author Andrey Kozel
  */
+@Named
 public class RulesValidatorImpl implements RulesValidator {
 
     private Validator validator;

@@ -4,6 +4,7 @@ import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
 import dev.akozel.cleaningtime.inmemoryrepository.community.helper.CommunityIdGenerationHelper;
 
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import java.util.Objects;
  *
  * @author Andrey Kozel
  */
+@Named
 public class InMemoryCommunityRepository implements CommunityRepository {
 
     private static final List<Community> COMMUNITIES = new ArrayList<>();
@@ -39,5 +41,13 @@ public class InMemoryCommunityRepository implements CommunityRepository {
                 .filter(community -> Objects.equals(community.getId(), communityId))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public Community update(Integer id, Community community) {
+        community.setId(id);
+        COMMUNITIES.removeIf(existingCommunity -> Objects.equals(existingCommunity.getId(), id));
+        COMMUNITIES.add(community);
+        return community;
     }
 }

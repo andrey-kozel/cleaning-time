@@ -1,5 +1,6 @@
 package dev.akozel.cleaningtime.core.community.repository;
 
+import dev.akozel.cleaningtime.core.common.repository.EntityRepository;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 
 /**
@@ -9,10 +10,10 @@ import dev.akozel.cleaningtime.core.community.domain.Community;
  *
  * @author Andrey Kozel
  */
-public interface CommunityRepository {
+public interface CommunityRepository extends EntityRepository<Community> {
 
     Integer save(Community community);
 
-    Community get(Integer communityId);
+    Community update(Integer id, Community community);
 
 }
