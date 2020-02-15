@@ -2,6 +2,7 @@ package dev.akozel.cleaningtime.rest.common.converter;
 
 import dev.akozel.cleaningtime.rest.common.dto.IdResponseDto;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 /**
  * IdResponseConverter.
@@ -10,6 +11,7 @@ import org.springframework.core.convert.converter.Converter;
  *
  * @author Andrey Kozel
  */
+@Component
 public class IdResponseConverter implements Converter<Integer, IdResponseDto> {
 
     @Override

@@ -6,6 +6,8 @@ import dev.akozel.cleaningtime.core.community.service.CommunityService;
 import dev.akozel.cleaningtime.rest.common.dto.IdResponseDto;
 import dev.akozel.cleaningtime.rest.common.validation.annotation.EntityExists;
 import dev.akozel.cleaningtime.rest.community.dto.CommunityDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Andrey Kozel
  */
 @RestController
-@RequestMapping(path = "communities")
+@RequestMapping(path = "v1/communities")
 @Validated
+@Api(value="Community")
 public class CommunityResource {
 
     private CommunityService communityService;
@@ -38,6 +41,7 @@ public class CommunityResource {
         this.conversionService = conversionService;
     }
 
+    @ApiOperation(value="Get particular community by its ID", response = CommunityDto.class)
     @RequestMapping(method = RequestMethod.GET, path = "{id}")
     public ResponseEntity<CommunityDto> get(@EntityExists(repository = CommunityRepository.class)
                                             @PathVariable("id") Integer id) {
@@ -48,8 +52,9 @@ public class CommunityResource {
 
     }
 
+    @ApiOperation(value="Save new community", response = IdResponseDto.class)
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<IdResponseDto> save(CommunityDto dto) {
+    public ResponseEntity<IdResponseDto> save(@RequestBody CommunityDto dto) {
         Community community = conversionService.convert(dto, Community.class);
         Integer communityId = communityService.create(community);
         IdResponseDto idResponse = conversionService.convert(communityId, IdResponseDto.class);
@@ -57,6 +62,7 @@ public class CommunityResource {
                 .ok(idResponse);
     }
 
+    @ApiOperation(value="Update existing community", response = CommunityDto.class)
     @RequestMapping(method = RequestMethod.PUT, path = "{id}")
     public ResponseEntity<CommunityDto> update(@EntityExists(repository = CommunityRepository.class)
                                                @PathVariable("id") Integer id,
