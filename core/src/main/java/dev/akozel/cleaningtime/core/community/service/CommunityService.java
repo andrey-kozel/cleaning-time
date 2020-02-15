@@ -11,6 +11,9 @@ import dev.akozel.cleaningtime.core.community.domain.Community;
  */
 public interface CommunityService {
 
+    Community get(Integer id);
+
     Integer create(Community community);
 
+    Community update(Integer id, Community community);
 }

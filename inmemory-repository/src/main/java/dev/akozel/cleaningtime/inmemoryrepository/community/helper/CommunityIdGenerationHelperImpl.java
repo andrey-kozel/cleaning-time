@@ -1,5 +1,6 @@
 package dev.akozel.cleaningtime.inmemoryrepository.community.helper;
 
+import javax.inject.Named;
 import java.time.Instant;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -10,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author Andrey Kozel
  */
+@Named
 public class CommunityIdGenerationHelperImpl implements CommunityIdGenerationHelper {
 
     private static final AtomicInteger LAST_GENERATED_ID = init();

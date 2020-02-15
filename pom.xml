@@ -12,7 +12,7 @@
     <modules>
         <module>core</module>
         <module>inmemory-repository</module>
-        <module>java-client</module>
+        <module>rest-client</module>
     </modules>
 
     <properties>
@@ -34,6 +34,18 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- CLEANING-TIME -->
+            <dependency>
+                <groupId>dev.akozel</groupId>
+                <artifactId>core</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.akozel</groupId>
+                <artifactId>inmemory-repository</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+
             <!-- LOMBOK -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
