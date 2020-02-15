@@ -14,10 +14,15 @@ import static org.mockito.BDDMockito.then;
 @RunWith(MockitoJUnitRunner.class)
 public class ApplicationUserServiceImplTest {
 
+    private static final String ANY_VALID_PASSWORD_CONFIRMATION = "password";
+    private static final String ANY_VALID_PASSWORD = "password";
+
     @Mock
     private RulesValidator rulesValidator;
     @Mock
     private ApplicationUserRepository applicationUserRepository;
+    @Mock
+    private PasswordEncoder passwordEncoder;
     @InjectMocks
     private ApplicationUserServiceImpl sut;
 
@@ -28,7 +33,7 @@ public class ApplicationUserServiceImplTest {
                 .build();
 
         //when
-        sut.createUser(validUser);
+        sut.registerUser(validUser, ANY_VALID_PASSWORD_CONFIRMATION);
 
         //then
         then(applicationUserRepository)
@@ -43,12 +48,27 @@ public class ApplicationUserServiceImplTest {
                 .build();
 
         //when
-        sut.createUser(validUser);
+        sut.registerUser(validUser, ANY_VALID_PASSWORD_CONFIRMATION);
 
         //then
         then(rulesValidator)
                 .should()
                 .validate(validUser);
+    }
+
+    @Test
+    public void should_encrypt_user_password_before_saving() {
+        ApplicationUser validUser = ApplicationUser.builder()
+                .password(ANY_VALID_PASSWORD)
+                .build();
+
+        //when
+        sut.registerUser(validUser, ANY_VALID_PASSWORD_CONFIRMATION);
+
+        //then
+        then(passwordEncoder)
+                .should()
+                .encode(ANY_VALID_PASSWORD);
     }
 
 }
