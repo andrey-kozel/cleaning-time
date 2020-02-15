@@ -3,6 +3,8 @@ package dev.akozel.cleaningtime.rest.community.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * CommunityDto. Community Dto for REST responses and requests
  * <p>
@@ -13,6 +15,7 @@ import lombok.Data;
 @Data
 public class CommunityDto {
 
+    @NotEmpty
     @JsonProperty("name")
     private String name;
 
