@@ -4,6 +4,9 @@ import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
 import dev.akozel.cleaningtime.core.validation.RulesValidator;
 
+import javax.inject.Named;
+import java.util.Objects;
+
 /**
  * ApplicationUserServiceImpl.
  * <p>
@@ -11,20 +14,28 @@ import dev.akozel.cleaningtime.core.validation.RulesValidator;
  *
  * @author Andrey Kozel
  */
+@Named
 public class ApplicationUserServiceImpl implements ApplicationUserService {
 
     private RulesValidator rulesValidator;
     private ApplicationUserRepository applicationUserRepository;
+    private PasswordEncoder passwordEncoder;
 
     public ApplicationUserServiceImpl(RulesValidator rulesValidator,
-                                      ApplicationUserRepository applicationUserRepository) {
+                                      ApplicationUserRepository applicationUserRepository,
+                                      PasswordEncoder passwordEncoder) {
         this.rulesValidator = rulesValidator;
         this.applicationUserRepository = applicationUserRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public Integer createUser(ApplicationUser user) {
+    public Integer registerUser(ApplicationUser user, String passwordConfirmation) {
         rulesValidator.validate(user);
+        if (!Objects.equals(user.getPassword(), passwordConfirmation)) {
+            rulesValidator.raiseError("Passwords are not match", "password", user.getPassword());
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return applicationUserRepository.save(user);
     }
 }

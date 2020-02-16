@@ -4,6 +4,7 @@ import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
 import dev.akozel.cleaningtime.inmemoryrepository.helper.IdGenerationHelper;
 
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  *
  * @author Andrey Kozel
  */
+@Named
 public class InMemoryApplicationUserRepository implements ApplicationUserRepository {
 
     private static final List<ApplicationUser> APPLICATION_USERS = new ArrayList<>();

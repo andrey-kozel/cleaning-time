@@ -22,18 +22,10 @@ public class ApplicationUser {
 
     @Size(min = 5)
     @NotEmpty
-    private String login;
+    private String email;
 
     @Size(min = 5)
     @NotEmpty
     private String password;
-
-    @Size(min = 5)
-    @NotEmpty
-    private String firstName;
-
-    @Size(min = 5)
-    @NotEmpty
-    private String lastName;
 
 }
