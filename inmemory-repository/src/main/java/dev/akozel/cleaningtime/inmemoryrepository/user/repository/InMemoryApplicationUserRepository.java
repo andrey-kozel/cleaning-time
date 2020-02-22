@@ -7,6 +7,7 @@ import dev.akozel.cleaningtime.inmemoryrepository.helper.IdGenerationHelper;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * InMemoryApplicationUserRepository.
@@ -32,5 +33,13 @@ public class InMemoryApplicationUserRepository implements ApplicationUserReposit
         user.setId(nextUserId);
         APPLICATION_USERS.add(user);
         return nextUserId;
+    }
+
+    @Override
+    public ApplicationUser getByEmail(String email) {
+        return APPLICATION_USERS.stream()
+                .filter(user -> Objects.equals(user.getEmail(), email))
+                .findFirst()
+                .orElse(null);
     }
 }

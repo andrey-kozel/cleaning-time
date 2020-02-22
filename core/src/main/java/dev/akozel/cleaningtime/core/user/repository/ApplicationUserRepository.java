@@ -13,4 +13,5 @@ public interface ApplicationUserRepository {
 
     Integer save(ApplicationUser user);
 
+    ApplicationUser getByEmail(String email);
 }

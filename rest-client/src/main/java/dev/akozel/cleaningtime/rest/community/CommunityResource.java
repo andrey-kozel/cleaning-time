@@ -4,7 +4,7 @@ import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
 import dev.akozel.cleaningtime.core.community.service.CommunityService;
 import dev.akozel.cleaningtime.rest.common.dto.IdResponseDto;
-import dev.akozel.cleaningtime.rest.common.validation.annotation.EntityExists;
+import dev.akozel.cleaningtime.rest.restconfig.beanvalidation.entityexists.EntityExists;
 import dev.akozel.cleaningtime.rest.community.dto.CommunityDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +45,7 @@ public class CommunityResource {
     }
 
     @ApiOperation(value = "Get particular community by its ID", response = CommunityDto.class)
-    @RequestMapping(method = RequestMethod.GET, path = "{id}")
+    @RequestMapping(method = RequestMethod.GET, path = "{id}", consumes = MediaType.ALL_VALUE)
     public ResponseEntity<CommunityDto> get(@EntityExists(repository = CommunityRepository.class)
                                             @PathVariable("id") Integer id) {
         Community community = communityService.get(id);

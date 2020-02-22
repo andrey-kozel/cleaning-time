@@ -13,4 +13,5 @@ public interface ApplicationUserService {
 
     Integer registerUser(ApplicationUser user, String passwordConfirmation);
 
+    ApplicationUser getByEmail(String email);
 }
