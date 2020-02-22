@@ -1,5 +1,6 @@
 package dev.akozel.cleaningtime.core.user.service;
 
+import dev.akozel.cleaningtime.core.security.CustomPasswordEncoder;
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
 import dev.akozel.cleaningtime.core.validation.RulesValidator;
@@ -22,7 +23,7 @@ public class ApplicationUserServiceImplTest {
     @Mock
     private ApplicationUserRepository applicationUserRepository;
     @Mock
-    private PasswordEncoder passwordEncoder;
+    private CustomPasswordEncoder passwordEncoder;
     @InjectMocks
     private ApplicationUserServiceImpl sut;
 

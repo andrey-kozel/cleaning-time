@@ -1,8 +1,10 @@
 package dev.akozel.cleaningtime.core.user.service;
 
+import dev.akozel.cleaningtime.core.security.CustomPasswordEncoder;
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
 import dev.akozel.cleaningtime.core.validation.RulesValidator;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Named;
 import java.util.Objects;
@@ -19,11 +21,11 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 
     private RulesValidator rulesValidator;
     private ApplicationUserRepository applicationUserRepository;
-    private PasswordEncoder passwordEncoder;
+    private CustomPasswordEncoder passwordEncoder;
 
     public ApplicationUserServiceImpl(RulesValidator rulesValidator,
                                       ApplicationUserRepository applicationUserRepository,
-                                      PasswordEncoder passwordEncoder) {
+                                      CustomPasswordEncoder passwordEncoder) {
         this.rulesValidator = rulesValidator;
         this.applicationUserRepository = applicationUserRepository;
         this.passwordEncoder = passwordEncoder;
@@ -37,5 +39,13 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return applicationUserRepository.save(user);
+    }
+
+    @Override
+    public ApplicationUser getByEmail(String email) {
+        if (StringUtils.isEmpty(email)) {
+            rulesValidator.raiseError("Email must not be empty", "email", email);
+        }
+        return applicationUserRepository.getByEmail(email);
     }
 }

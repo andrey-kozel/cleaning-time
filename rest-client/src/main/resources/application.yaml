@@ -1,5 +1,8 @@
 server:
   port: 8080
-
   servlet:
     context-path: /api
+
+jwt:
+  validity: 900000
+  secret: S%XSJ+Ka9m4"k*~H

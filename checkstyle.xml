@@ -40,9 +40,9 @@
         <!-- see http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarningsHolder -->
         <module name="SuppressWarningsHolder"/>
 
-        <module name="RightCurly">
-            <property name="option" value="alone"/>
-        </module>
+<!--        <module name="RightCurly">-->
+<!--            <property name="option" value="alone"/>-->
+<!--        </module>-->
 
         <module name="LineLength">
             <property name="max" value="120"/>

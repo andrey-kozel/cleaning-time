@@ -33,6 +33,8 @@
         <javax.el.version>3.0.0</javax.el.version>
         <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <spring-boot-dependencies.version>2.2.4.RELEASE</spring-boot-dependencies.version>
     </properties>
 
     <dependencyManagement>
@@ -81,6 +83,15 @@
                 <version>${javax.inject.version}</version>
             </dependency>
 
+            <!-- SPRING -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- BEAN VALIDATION -->
             <dependency>
                 <groupId>javax.validation</groupId>
@@ -123,6 +134,13 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-bean-validators</artifactId>
                 <version>${springfox-swagger2.version}</version>
+            </dependency>
+
+            <!-- JWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
 
             <!--TESTING -->
