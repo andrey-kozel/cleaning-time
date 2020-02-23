@@ -3,6 +3,7 @@ package dev.akozel.cleaningtime.core.user.service;
 import dev.akozel.cleaningtime.core.security.Encoder;
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
+import dev.akozel.cleaningtime.core.user.validation.UserValidator;
 import dev.akozel.cleaningtime.core.validation.RulesValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ public class ApplicationUserServiceImplTest {
     private static final String ANY_VALID_PASSWORD = "password";
 
     @Mock
-    private RulesValidator rulesValidator;
+    private UserValidator userValidator;
     @Mock
     private ApplicationUserRepository applicationUserRepository;
     @Mock
@@ -52,9 +53,9 @@ public class ApplicationUserServiceImplTest {
         sut.registerUser(validUser, ANY_VALID_PASSWORD_CONFIRMATION);
 
         //then
-        then(rulesValidator)
+        then(userValidator)
                 .should()
-                .validate(validUser);
+                .validateRegisterUser(validUser, ANY_VALID_PASSWORD_CONFIRMATION);
     }
 
     @Test
