@@ -1,14 +1,13 @@
 package dev.akozel.cleaningtime.core.security;
 
 /**
- * PasswordEncoder. Interface for user's password encoding
+ * Encoder. Interface for user's password encoding
  * <p>
  * Date: 15/02/2020
  *
  * @author Andrey Kozel
  */
-//TODO replace it with implementation in the core
-public interface CustomPasswordEncoder {
+public interface Encoder {
 
     String encode(String stringToEncode);
 

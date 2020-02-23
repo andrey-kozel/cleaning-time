@@ -1,6 +1,6 @@
 package dev.akozel.cleaningtime.rest.security.auth.service;
 
-import dev.akozel.cleaningtime.core.security.CustomPasswordEncoder;
+import dev.akozel.cleaningtime.core.security.Encoder;
 import dev.akozel.cleaningtime.rest.security.auth.domain.AuthRequest;
 import dev.akozel.cleaningtime.rest.security.auth.domain.AuthResponse;
 import dev.akozel.cleaningtime.rest.security.jwt.service.JwtTokenService;
@@ -20,12 +20,12 @@ import org.springframework.stereotype.Component;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private UserDetailsService userDetailsService;
-    private CustomPasswordEncoder passwordEncoder;
+    private Encoder passwordEncoder;
     private JwtTokenService jwtTokenService;
 
     @Autowired
     public AuthenticationServiceImpl(UserDetailsService userDetailsService,
-                                     CustomPasswordEncoder passwordEncoder,
+                                     Encoder passwordEncoder,
                                      JwtTokenService jwtTokenService) {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;

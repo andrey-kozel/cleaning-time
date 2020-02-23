@@ -1,6 +1,6 @@
 package dev.akozel.cleaningtime.core.user.service;
 
-import dev.akozel.cleaningtime.core.security.CustomPasswordEncoder;
+import dev.akozel.cleaningtime.core.security.Encoder;
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
 import dev.akozel.cleaningtime.core.validation.RulesValidator;
@@ -21,11 +21,11 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 
     private RulesValidator rulesValidator;
     private ApplicationUserRepository applicationUserRepository;
-    private CustomPasswordEncoder passwordEncoder;
+    private Encoder passwordEncoder;
 
     public ApplicationUserServiceImpl(RulesValidator rulesValidator,
                                       ApplicationUserRepository applicationUserRepository,
-                                      CustomPasswordEncoder passwordEncoder) {
+                                      Encoder passwordEncoder) {
         this.rulesValidator = rulesValidator;
         this.applicationUserRepository = applicationUserRepository;
         this.passwordEncoder = passwordEncoder;

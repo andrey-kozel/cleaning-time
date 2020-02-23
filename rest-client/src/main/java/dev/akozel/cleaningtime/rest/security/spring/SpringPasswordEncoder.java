@@ -1,9 +1,9 @@
 package dev.akozel.cleaningtime.rest.security.spring;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import dev.akozel.cleaningtime.core.security.Encoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 /**
  * SpringPasswordEncoder.
@@ -12,12 +12,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  *
  * @author Andrey Kozel
  */
-@Configuration
-public class SpringPasswordEncoder {
+@Component
+public class SpringPasswordEncoder implements PasswordEncoder {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    private Encoder encoder;
+
+    @Autowired
+    public SpringPasswordEncoder(Encoder encoder) {
+        this.encoder = encoder;
     }
 
+    @Override
+    public String encode(CharSequence rawPassword) {
+        return encoder.encode(rawPassword.toString());
+    }
+
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return encoder.matches(rawPassword.toString(), encodedPassword.toString());
+    }
 }
