@@ -28,19 +28,19 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public Community get(Integer communityId) {
+    public Community get(Long communityId) {
         communityValidator.validateGet(communityId);
         return communityRepository.get(communityId);
     }
 
     @Override
-    public Integer create(Community community) {
+    public Long create(Community community) {
         communityValidator.validateCreate(community);
         return communityRepository.save(community);
     }
 
     @Override
-    public Community update(Integer communityId, Community community) {
+    public Community update(Long communityId, Community community) {
         communityValidator.validateUpdate(communityId, community);
         return communityRepository.update(communityId, community);
     }

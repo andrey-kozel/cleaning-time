@@ -46,7 +46,7 @@ public class RegistrationsResource {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<IdResponseDto> createUser(@RequestBody RegistrationDto dto) {
         ApplicationUser user = conversionService.convert(dto, ApplicationUser.class);
-        Integer userId = applicationUserService.registerUser(user, dto.getPasswordConfirmation());
+        Long userId = applicationUserService.registerUser(user, dto.getPasswordConfirmation());
         IdResponseDto id = conversionService.convert(userId, IdResponseDto.class);
         return ResponseEntity
                 .ok(id);

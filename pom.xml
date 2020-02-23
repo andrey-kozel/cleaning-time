@@ -11,8 +11,8 @@
 
     <modules>
         <module>core</module>
-        <module>inmemory-repository</module>
         <module>rest-client</module>
+        <module>postgres-repository</module>
     </modules>
 
     <properties>
@@ -36,6 +36,8 @@
         <jjwt.version>0.9.1</jjwt.version>
         <spring-boot-dependencies.version>2.2.4.RELEASE</spring-boot-dependencies.version>
         <jbcrypt.version>0.4</jbcrypt.version>
+        <postgresql.version>42.2.10</postgresql.version>
+        <jooq.version>3.13.1</jooq.version>
     </properties>
 
     <dependencyManagement>
@@ -48,7 +50,7 @@
             </dependency>
             <dependency>
                 <groupId>dev.akozel</groupId>
-                <artifactId>inmemory-repository</artifactId>
+                <artifactId>postgres-repository</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
 
@@ -99,6 +101,11 @@
                 <artifactId>jbcrypt</artifactId>
                 <version>${jbcrypt.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
 
             <!-- BEAN VALIDATION -->
             <dependency>
@@ -144,11 +151,26 @@
                 <version>${springfox-swagger2.version}</version>
             </dependency>
 
-            <!-- JWT -->
+            <!-- DATABASES -->
             <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jjwt.version}</version>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq</artifactId>
+                <version>${jooq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-meta</artifactId>
+                <version>${jooq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen</artifactId>
+                <version>${jooq.version}</version>
             </dependency>
 
             <!--TESTING -->

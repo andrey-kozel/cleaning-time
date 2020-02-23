@@ -12,8 +12,8 @@ import dev.akozel.cleaningtime.core.community.domain.Community;
  */
 public interface CommunityRepository extends EntityRepository<Community> {
 
-    Integer save(Community community);
+    Long save(Community community);
 
-    Community update(Integer id, Community community);
+    Community update(Long id, Community community);
 
 }

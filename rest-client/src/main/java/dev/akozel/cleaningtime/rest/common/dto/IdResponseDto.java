@@ -14,6 +14,6 @@ import lombok.Data;
 public class IdResponseDto {
 
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
 
 }

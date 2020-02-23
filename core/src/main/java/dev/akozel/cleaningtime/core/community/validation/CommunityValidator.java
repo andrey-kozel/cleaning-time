@@ -11,10 +11,10 @@ import dev.akozel.cleaningtime.core.community.domain.Community;
  */
 public interface CommunityValidator {
 
-    void validateGet(Integer id);
+    void validateGet(Long id);
 
     void validateCreate(Community community);
 
-    void validateUpdate(Integer communityId, Community community);
+    void validateUpdate(Long communityId, Community community);
 
 }

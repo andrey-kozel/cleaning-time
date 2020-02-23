@@ -9,6 +9,6 @@ package dev.akozel.cleaningtime.core.common.repository;
  */
 public interface EntityRepository<T> {
 
-    T get(Integer communityId);
+    T get(Long communityId);
 
 }

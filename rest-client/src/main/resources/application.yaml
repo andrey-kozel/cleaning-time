@@ -6,3 +6,11 @@ server:
 jwt:
   validity: 900000
   secret: S%XSJ+Ka9m4"k*~H
+
+cleaning:
+  time:
+    database:
+      url:
+      username:
+      password:
+      dialect: POSTGRES
