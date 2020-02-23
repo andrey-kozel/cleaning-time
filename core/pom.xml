@@ -28,6 +28,12 @@
             <artifactId>commons-collections4</artifactId>
         </dependency>
 
+        <!-- SECURITY -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+        </dependency>
+
         <!-- DI -->
         <dependency>
             <groupId>javax.inject</groupId>
