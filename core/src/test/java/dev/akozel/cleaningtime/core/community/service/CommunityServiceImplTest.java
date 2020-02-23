@@ -3,7 +3,7 @@ package dev.akozel.cleaningtime.core.community.service;
 import com.googlecode.catchexception.apis.BDDCatchException;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
-import dev.akozel.cleaningtime.core.validation.RulesValidator;
+import dev.akozel.cleaningtime.core.community.validation.CommunityValidator;
 import dev.akozel.cleaningtime.core.validation.exception.ApplicationValidationException;
 import junitparams.JUnitParamsRunner;
 import org.junit.Rule;
@@ -35,7 +35,7 @@ public class CommunityServiceImplTest {
     @Mock
     private CommunityRepository communityRepository;
     @Mock
-    private RulesValidator rulesValidator;
+    private CommunityValidator communityValidator;
     @InjectMocks
     private CommunityServiceImpl sut;
 
@@ -72,8 +72,8 @@ public class CommunityServiceImplTest {
                 .name(null)
                 .build();
         willThrow(ApplicationValidationException.class)
-                .given(rulesValidator)
-                .validate(isA(Community.class));
+                .given(communityValidator)
+                .validateCreate(isA(Community.class));
 
         //when
         BDDCatchException.when(sut)
