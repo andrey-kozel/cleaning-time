@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 @Data
 public class ApplicationUser {
 
-    private Integer id;
+    private Long id;
 
     @Size(min = 5)
     @NotEmpty

@@ -11,7 +11,7 @@ import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
  */
 public interface ApplicationUserRepository {
 
-    Integer save(ApplicationUser user);
+    Long save(ApplicationUser user);
 
     ApplicationUser getByEmail(String email);
 }

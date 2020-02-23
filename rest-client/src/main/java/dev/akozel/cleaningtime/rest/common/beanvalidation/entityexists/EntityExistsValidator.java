@@ -14,7 +14,7 @@ import javax.validation.ConstraintValidatorContext;
  *
  * @author Andrey Kozel
  */
-public class EntityExistsValidator implements ConstraintValidator<EntityExists, Integer> {
+public class EntityExistsValidator implements ConstraintValidator<EntityExists, Long> {
 
     private ApplicationContext applicationContext;
     private EntityRepository<?> entityRepository;
@@ -31,7 +31,7 @@ public class EntityExistsValidator implements ConstraintValidator<EntityExists, 
     }
 
     @Override
-    public boolean isValid(Integer id, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
         return entityRepository.get(id) != null;
     }
 }

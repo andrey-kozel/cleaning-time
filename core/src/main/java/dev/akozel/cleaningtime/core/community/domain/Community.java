@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 @Data
 public class Community {
 
-    private Integer id;
+    private Long id;
 
     @Size(min = 3)
     @NotEmpty

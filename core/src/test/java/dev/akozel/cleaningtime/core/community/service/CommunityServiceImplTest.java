@@ -27,7 +27,7 @@ public class CommunityServiceImplTest {
     private static final Community VALID_COMMUNITY = Community.builder()
             .name("SOME_VALID_COMMUNITY_NAME")
             .build();
-    private static final Integer ANY_VALID_COMMUNITY_ID = 67543;
+    private static final Long ANY_VALID_COMMUNITY_ID = 67543L;
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
@@ -57,7 +57,7 @@ public class CommunityServiceImplTest {
                 .willReturn(ANY_VALID_COMMUNITY_ID);
 
         //when
-        Integer actual = sut.create(VALID_COMMUNITY);
+        Long actual = sut.create(VALID_COMMUNITY);
 
         //then
         assertThat(actual)
@@ -101,6 +101,37 @@ public class CommunityServiceImplTest {
         assertThat(actual)
                 .isNotNull()
                 .isSameAs(anyCommunity);
+    }
+
+    @Test
+    public void should_validate_community_before_update() {
+        //given
+        Community anyCommunity = Community.builder()
+                .build();
+        Integer anyIdentifier = 127;
+
+        //when
+        sut.update(ANY_VALID_COMMUNITY_ID, anyCommunity);
+
+        //then
+        then(communityValidator)
+                .should()
+                .validateUpdate(ANY_VALID_COMMUNITY_ID, anyCommunity);
+    }
+
+    @Test
+    public void should_update_community_if_request_valid() {
+        //given
+        Community anyCommunity = Community.builder()
+                .build();
+
+        //when
+        sut.update(ANY_VALID_COMMUNITY_ID, anyCommunity);
+
+        //then
+        then(communityRepository)
+                .should()
+                .update(ANY_VALID_COMMUNITY_ID, anyCommunity);
     }
 
 }

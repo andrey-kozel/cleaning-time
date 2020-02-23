@@ -11,7 +11,7 @@ import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
  */
 public interface ApplicationUserService {
 
-    Integer registerUser(ApplicationUser user, String passwordConfirmation);
+    Long registerUser(ApplicationUser user, String passwordConfirmation);
 
     ApplicationUser getByEmail(String email);
 }

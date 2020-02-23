@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
  * @author Andrey Kozel
  */
 @Component
-public class IdResponseConverter implements Converter<Integer, IdResponseDto> {
+public class IdResponseConverter implements Converter<Long, IdResponseDto> {
 
     @Override
-    public IdResponseDto convert(Integer source) {
+    public IdResponseDto convert(Long source) {
         IdResponseDto target = new IdResponseDto();
         target.setId(source);
         return target;

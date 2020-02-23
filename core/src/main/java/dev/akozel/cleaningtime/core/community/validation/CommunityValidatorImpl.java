@@ -24,7 +24,7 @@ public class CommunityValidatorImpl implements CommunityValidator {
     }
 
     @Override
-    public void validateGet(Integer communityId) {
+    public void validateGet(Long communityId) {
         if (communityId == null) {
             rulesValidator.raiseError("Community id should be present", "communityId", null);
         }
@@ -36,7 +36,7 @@ public class CommunityValidatorImpl implements CommunityValidator {
     }
 
     @Override
-    public void validateUpdate(Integer communityId, Community community) {
+    public void validateUpdate(Long communityId, Community community) {
         if (communityId == null) {
             rulesValidator.raiseError("Community id should be present", "communityId", null);
         }

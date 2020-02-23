@@ -3,8 +3,8 @@ package dev.akozel.cleaningtime.rest.feature.community;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
 import dev.akozel.cleaningtime.core.community.service.CommunityService;
-import dev.akozel.cleaningtime.rest.common.dto.IdResponseDto;
 import dev.akozel.cleaningtime.rest.common.beanvalidation.entityexists.EntityExists;
+import dev.akozel.cleaningtime.rest.common.dto.IdResponseDto;
 import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,7 +47,7 @@ public class CommunityResource {
     @ApiOperation(value = "Get particular community by its ID", response = CommunityDto.class)
     @RequestMapping(method = RequestMethod.GET, path = "{id}", consumes = MediaType.ALL_VALUE)
     public ResponseEntity<CommunityDto> get(@EntityExists(repository = CommunityRepository.class)
-                                            @PathVariable("id") Integer id) {
+                                            @PathVariable("id") Long id) {
         Community community = communityService.get(id);
         CommunityDto dto = conversionService.convert(community, CommunityDto.class);
         return ResponseEntity
@@ -59,7 +59,7 @@ public class CommunityResource {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<IdResponseDto> save(@RequestBody CommunityDto dto) {
         Community community = conversionService.convert(dto, Community.class);
-        Integer communityId = communityService.create(community);
+        Long communityId = communityService.create(community);
         IdResponseDto idResponse = conversionService.convert(communityId, IdResponseDto.class);
         return ResponseEntity
                 .ok(idResponse);
@@ -68,7 +68,7 @@ public class CommunityResource {
     @ApiOperation(value = "Update existing community", response = CommunityDto.class)
     @RequestMapping(method = RequestMethod.PUT, path = "{id}")
     public ResponseEntity<CommunityDto> update(@EntityExists(repository = CommunityRepository.class)
-                                               @PathVariable("id") Integer id,
+                                               @PathVariable("id") Long id,
                                                @RequestBody CommunityDto dto) {
         Community community = conversionService.convert(dto, Community.class);
         Community updatedCommunity = communityService.update(id, community);
