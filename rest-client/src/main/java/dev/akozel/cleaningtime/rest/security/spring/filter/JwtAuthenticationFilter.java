@@ -1,6 +1,6 @@
 package dev.akozel.cleaningtime.rest.security.spring.filter;
 
-import dev.akozel.cleaningtime.rest.security.auth.domain.AuthToken;
+import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthToken;
 import dev.akozel.cleaningtime.rest.security.jwt.service.JwtTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
