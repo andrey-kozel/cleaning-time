@@ -1,7 +1,3 @@
-CREATE DATABASE cleaning_time;
-
-USE cleaning_time;
-
 CREATE TABLE users (
 
     id BIGSERIAL NOT NULL PRIMARY KEY,
