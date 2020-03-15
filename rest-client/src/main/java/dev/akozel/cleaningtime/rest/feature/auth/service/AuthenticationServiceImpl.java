@@ -1,8 +1,11 @@
 package dev.akozel.cleaningtime.rest.feature.auth.service;
 
 import dev.akozel.cleaningtime.core.security.Encoder;
+import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
+import dev.akozel.cleaningtime.core.user.service.ApplicationUserService;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthRequest;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
+import dev.akozel.cleaningtime.rest.feature.auth.validation.AuthValidator;
 import dev.akozel.cleaningtime.rest.security.jwt.service.JwtTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,17 +22,34 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    private UserDetailsService userDetailsService;
-    private Encoder passwordEncoder;
-    private JwtTokenService jwtTokenService;
+    private final AuthValidator authValidator;
+    private final UserDetailsService userDetailsService;
+    private final ApplicationUserService applicationUserService;
+    private final Encoder passwordEncoder;
+    private final JwtTokenService jwtTokenService;
 
     @Autowired
-    public AuthenticationServiceImpl(UserDetailsService userDetailsService,
+    public AuthenticationServiceImpl(AuthValidator authValidator,
+                                     UserDetailsService userDetailsService,
+                                     ApplicationUserService applicationUserService,
                                      Encoder passwordEncoder,
                                      JwtTokenService jwtTokenService) {
+        this.authValidator = authValidator;
         this.userDetailsService = userDetailsService;
+        this.applicationUserService = applicationUserService;
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenService = jwtTokenService;
+    }
+
+    @Override
+    public AuthResponse registerUser(ApplicationUser user, String passwordConfirmation) {
+        authValidator.validateRegistration(user, passwordConfirmation);
+        applicationUserService.saveUser(user);
+        AuthRequest authRequest = AuthRequest.builder()
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .build();
+        return authenticate(authRequest);
     }
 
     @Override

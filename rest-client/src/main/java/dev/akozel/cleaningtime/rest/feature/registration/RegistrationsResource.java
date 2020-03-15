@@ -1,8 +1,9 @@
 package dev.akozel.cleaningtime.rest.feature.registration;
 
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
-import dev.akozel.cleaningtime.core.user.service.ApplicationUserService;
-import dev.akozel.cleaningtime.rest.common.dto.IdResponseDto;
+import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
+import dev.akozel.cleaningtime.rest.feature.auth.dto.AuthResponseDto;
+import dev.akozel.cleaningtime.rest.feature.auth.service.AuthenticationService;
 import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityDto;
 import dev.akozel.cleaningtime.rest.feature.registration.dto.RegistrationDto;
 import io.swagger.annotations.Api;
@@ -32,24 +33,24 @@ import org.springframework.web.bind.annotation.RestController;
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class RegistrationsResource {
 
-    private ApplicationUserService applicationUserService;
+    private AuthenticationService authenticationService;
     private ConversionService conversionService;
 
     @Autowired
-    public RegistrationsResource(ApplicationUserService applicationUserService,
+    public RegistrationsResource(AuthenticationService authenticationService,
                                  ConversionService conversionService) {
-        this.applicationUserService = applicationUserService;
+        this.authenticationService = authenticationService;
         this.conversionService = conversionService;
     }
 
     @ApiOperation(value = "Register new user", response = CommunityDto.class)
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<IdResponseDto> createUser(@RequestBody RegistrationDto dto) {
+    public ResponseEntity<AuthResponseDto> createUser(@RequestBody RegistrationDto dto) {
         ApplicationUser user = conversionService.convert(dto, ApplicationUser.class);
-        Long userId = applicationUserService.registerUser(user, dto.getPasswordConfirmation());
-        IdResponseDto id = conversionService.convert(userId, IdResponseDto.class);
+        AuthResponse authResponse = authenticationService.registerUser(user, dto.getPasswordConfirmation());
+        AuthResponseDto authResponseDto = conversionService.convert(authResponse, AuthResponseDto.class);
         return ResponseEntity
-                .ok(id);
+                .ok(authResponseDto);
     }
 
 }

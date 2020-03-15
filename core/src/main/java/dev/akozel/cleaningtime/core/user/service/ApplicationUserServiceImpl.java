@@ -30,8 +30,8 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     }
 
     @Override
-    public Long registerUser(ApplicationUser user, String passwordConfirmation) {
-        userValidator.validateRegisterUser(user, passwordConfirmation);
+    public Long saveUser(ApplicationUser user) {
+        userValidator.validateSave(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return applicationUserRepository.save(user);
     }

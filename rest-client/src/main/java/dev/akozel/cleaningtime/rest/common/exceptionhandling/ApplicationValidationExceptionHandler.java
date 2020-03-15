@@ -8,6 +8,7 @@ import dev.akozel.cleaningtime.rest.common.exceptionhandling.dto.ErrorResponseDt
 import dev.akozel.cleaningtime.rest.common.exceptionhandling.dto.ErrorType;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,8 +29,10 @@ public class ApplicationValidationExceptionHandler {
 
     @ExceptionHandler(ApplicationValidationException.class)
     public ResponseEntity<ErrorResponseDto> handleApplicationValidationException(ApplicationValidationException ex) {
-        ErrorResponseDto errorResponseDto = buildResult(ex.getValidationResult());
-        return null;
+        ErrorResponseDto error = buildResult(ex.getValidationResult());
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(error);
     }
 
     private ErrorResponseDto buildResult(ValidationResult violations) {

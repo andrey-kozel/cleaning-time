@@ -11,7 +11,7 @@ import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
  */
 public interface UserValidator {
 
-    void validateRegisterUser(ApplicationUser user, String passwordConfirmation);
+    void validateSave(ApplicationUser user);
 
     void validateGetByEmail(String email);
 

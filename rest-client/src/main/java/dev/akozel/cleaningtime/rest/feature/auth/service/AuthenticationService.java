@@ -1,5 +1,6 @@
 package dev.akozel.cleaningtime.rest.feature.auth.service;
 
+import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthRequest;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
 
@@ -11,6 +12,8 @@ import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
  * @author Andrey Kozel
  */
 public interface AuthenticationService {
+
+    AuthResponse registerUser(ApplicationUser user, String passwordConfirmation);
 
     AuthResponse authenticate(AuthRequest request);
 

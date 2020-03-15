@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @Data
 public class RegistrationDto {
 
-    @JsonProperty("login")
+    @JsonProperty("email")
     @Size(min = 5)
     @NotEmpty
     private String email;
