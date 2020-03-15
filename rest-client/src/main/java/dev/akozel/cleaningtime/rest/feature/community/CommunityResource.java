@@ -3,7 +3,7 @@ package dev.akozel.cleaningtime.rest.feature.community;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
 import dev.akozel.cleaningtime.core.community.service.CommunityService;
-import dev.akozel.cleaningtime.rest.common.beanvalidation.entityexists.EntityExists;
+import dev.akozel.cleaningtime.rest.common.validation.entityexists.EntityExists;
 import dev.akozel.cleaningtime.rest.common.dto.IdResponseDto;
 import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityDto;
 import io.swagger.annotations.Api;

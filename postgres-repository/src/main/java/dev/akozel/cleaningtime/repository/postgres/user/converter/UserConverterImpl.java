@@ -25,6 +25,9 @@ public class UserConverterImpl implements UserConverter {
 
     @Override
     public ApplicationUser unconvert(UsersRecord usersRecord) {
+        if (usersRecord == null) {
+            return null;
+        }
         return ApplicationUser.builder()
                 .email(usersRecord.getEmail())
                 .password(usersRecord.getPassword())
