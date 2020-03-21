@@ -2,10 +2,10 @@ package dev.akozel.cleaningtime.repository.postgres.user;
 
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
+import dev.akozel.cleaningtime.repository.postgres.tables.Users;
+import dev.akozel.cleaningtime.repository.postgres.tables.records.UsersRecord;
 import dev.akozel.cleaningtime.repository.postgres.user.converter.UserConverter;
 import org.jooq.DSLContext;
-import org.jooq.codegen.maven.example.tables.Users;
-import org.jooq.codegen.maven.example.tables.records.UsersRecord;
 
 import javax.inject.Inject;
 import javax.inject.Named;

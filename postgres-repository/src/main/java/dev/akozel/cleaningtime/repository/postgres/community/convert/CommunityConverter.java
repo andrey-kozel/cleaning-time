@@ -1,7 +1,7 @@
 package dev.akozel.cleaningtime.repository.postgres.community.convert;
 
 import dev.akozel.cleaningtime.core.community.domain.Community;
-import org.jooq.codegen.maven.example.tables.records.CommunitiesRecord;
+import dev.akozel.cleaningtime.repository.postgres.tables.records.CommunitiesRecord;
 
 /**
  * CommunityConverter. Converts communities
