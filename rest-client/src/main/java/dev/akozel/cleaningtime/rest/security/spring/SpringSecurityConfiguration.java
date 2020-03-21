@@ -1,7 +1,7 @@
 package dev.akozel.cleaningtime.rest.security.spring;
 
-import dev.akozel.cleaningtime.rest.security.spring.filter.JwtAuthenticationFilter;
 import dev.akozel.cleaningtime.rest.security.jwt.service.JwtTokenService;
+import dev.akozel.cleaningtime.rest.security.spring.filter.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -47,6 +47,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         disableCsrf(http);
+        enableCors(http);
         makeSwaggerEndpointsAvailable(http);
         makePublicEndpointsAvailable(http);
         restrictOtherEndpoints(http);
@@ -57,6 +58,10 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private void disableCsrf(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable();
+    }
+
+    private void enableCors(HttpSecurity http) throws Exception {
+        http.cors();
     }
 
     private void makeSwaggerEndpointsAvailable(HttpSecurity http) throws Exception {

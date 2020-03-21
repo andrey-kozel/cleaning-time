@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Objects;
 
 /**
  * UserValidatorImpl.
@@ -26,11 +25,8 @@ public class UserValidatorImpl implements UserValidator {
     }
 
     @Override
-    public void validateRegisterUser(ApplicationUser user, String passwordConfirmation) {
+    public void validateSave(ApplicationUser user) {
         rulesValidator.validate(user);
-        if (!Objects.equals(user.getPassword(), passwordConfirmation)) {
-            rulesValidator.raiseError("Passwords are not match", "password", user.getPassword());
-        }
     }
 
     @Override

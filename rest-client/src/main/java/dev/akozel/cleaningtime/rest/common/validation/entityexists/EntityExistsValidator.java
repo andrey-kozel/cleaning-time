@@ -1,4 +1,4 @@
-package dev.akozel.cleaningtime.rest.common.beanvalidation.entityexists;
+package dev.akozel.cleaningtime.rest.common.validation.entityexists;
 
 import dev.akozel.cleaningtime.core.common.repository.EntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;

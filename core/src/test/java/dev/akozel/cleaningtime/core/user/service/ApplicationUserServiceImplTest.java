@@ -4,7 +4,6 @@ import dev.akozel.cleaningtime.core.security.Encoder;
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
 import dev.akozel.cleaningtime.core.user.validation.UserValidator;
-import dev.akozel.cleaningtime.core.validation.RulesValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -35,7 +34,7 @@ public class ApplicationUserServiceImplTest {
                 .build();
 
         //when
-        sut.registerUser(validUser, ANY_VALID_PASSWORD_CONFIRMATION);
+        sut.saveUser(validUser);
 
         //then
         then(applicationUserRepository)
@@ -50,12 +49,12 @@ public class ApplicationUserServiceImplTest {
                 .build();
 
         //when
-        sut.registerUser(validUser, ANY_VALID_PASSWORD_CONFIRMATION);
+        sut.saveUser(validUser);
 
         //then
         then(userValidator)
                 .should()
-                .validateRegisterUser(validUser, ANY_VALID_PASSWORD_CONFIRMATION);
+                .validateSave(validUser);
     }
 
     @Test
@@ -65,7 +64,7 @@ public class ApplicationUserServiceImplTest {
                 .build();
 
         //when
-        sut.registerUser(validUser, ANY_VALID_PASSWORD_CONFIRMATION);
+        sut.saveUser(validUser);
 
         //then
         then(passwordEncoder)
