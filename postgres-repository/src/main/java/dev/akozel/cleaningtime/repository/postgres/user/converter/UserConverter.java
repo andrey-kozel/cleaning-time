@@ -1,7 +1,7 @@
 package dev.akozel.cleaningtime.repository.postgres.user.converter;
 
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
-import org.jooq.codegen.maven.example.tables.records.UsersRecord;
+import dev.akozel.cleaningtime.repository.postgres.tables.records.UsersRecord;
 
 /**
  * UserConverter. Converts from core model to persistent

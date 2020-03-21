@@ -3,9 +3,9 @@ package dev.akozel.cleaningtime.repository.postgres.community;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
 import dev.akozel.cleaningtime.repository.postgres.community.convert.CommunityConverter;
+import dev.akozel.cleaningtime.repository.postgres.tables.Communities;
+import dev.akozel.cleaningtime.repository.postgres.tables.records.CommunitiesRecord;
 import org.jooq.DSLContext;
-import org.jooq.codegen.maven.example.tables.Communities;
-import org.jooq.codegen.maven.example.tables.records.CommunitiesRecord;
 import org.jooq.impl.DSL;
 
 import javax.inject.Inject;
