@@ -5,6 +5,7 @@ import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.service.ApplicationUserService;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthRequest;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
+import dev.akozel.cleaningtime.rest.feature.auth.domain.RefreshTokenRequest;
 import dev.akozel.cleaningtime.rest.feature.auth.validation.AuthValidator;
 import dev.akozel.cleaningtime.rest.security.jwt.service.JwtTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,4 +58,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return new AuthResponse(accessToken);
     }
 
+    @Override
+    public AuthResponse refreshToken(RefreshTokenRequest request) {
+        String userName = jwtTokenService.getUsernameByAccessToken(request.getAccessToken());
+        UserDetails user = userDetailsService.loadUserByUsername(userName);
+        String accessToken = jwtTokenService.generateAccessToken(user);
+        return new AuthResponse(accessToken);
+    }
 }

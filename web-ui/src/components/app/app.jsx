@@ -2,7 +2,8 @@ import React, {Fragment} from 'react'
 import {CssBaseline} from "@material-ui/core";
 import {Route, Switch} from 'react-router-dom'
 
-import PrivateRoute from "../private-route/PrivateRoute";
+import PrivateRoute from "../private-route";
+import TokenRefresher from '../token-refresher'
 import LoginPage from "../login";
 import RegistrationPage from "../registration";
 import HomePage from '../home'
@@ -22,6 +23,7 @@ const App = () => {
                               component={HomePage}
                               exact/>
             </Switch>
+            <TokenRefresher />
         </Fragment>
     )
 };

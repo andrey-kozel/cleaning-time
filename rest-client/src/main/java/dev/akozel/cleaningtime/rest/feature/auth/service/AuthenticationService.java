@@ -3,6 +3,7 @@ package dev.akozel.cleaningtime.rest.feature.auth.service;
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthRequest;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
+import dev.akozel.cleaningtime.rest.feature.auth.domain.RefreshTokenRequest;
 
 /**
  * AuthenticationService. This service responsible for validation of the user and token generation
@@ -17,4 +18,5 @@ public interface AuthenticationService {
 
     AuthResponse authenticate(AuthRequest request);
 
+    AuthResponse refreshToken(RefreshTokenRequest request);
 }

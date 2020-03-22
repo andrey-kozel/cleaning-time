@@ -6,10 +6,21 @@ const getAccessToken = () => {
     const token = sessionStorage.getItem('token');
     const payload = extractPayload(token);
     if (!payload || isTokenExpired(payload)) {
+        sessionStorage.removeItem('token');
         return null;
     }
     console.log(payload);
-    return `Bearer ${token}`;
+    return token;
+};
+
+const isExpiredInASeconds = (seconds) => {
+    const token = sessionStorage.getItem('token');
+    const payload = extractPayload(token);
+    if (!payload) {
+        return false;
+    }
+    const currentTimeInSeconds = new Date().getTime() / 1000;
+    return payload["exp"] - currentTimeInSeconds < seconds;
 };
 
 const extractPayload = (token) => {
@@ -36,5 +47,6 @@ const isTokenExpired = (payload) => {
 
 export {
     saveToken,
-    getAccessToken
+    getAccessToken,
+    isExpiredInASeconds
 }

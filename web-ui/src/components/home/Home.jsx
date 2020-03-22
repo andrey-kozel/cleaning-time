@@ -1,8 +1,12 @@
 import React from 'react'
+import AppHeader from "../header/AppHeader";
 
 const Home = () => {
     return (
-        <div>Home page</div>
+        <>
+            <AppHeader/>
+            <div> text </div>
+        </>
     )
 };
 
