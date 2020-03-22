@@ -20,11 +20,12 @@ const registerUserFailed = (response) => {
     }
 };
 
-const performRegistration = (cleaningTimeService, dispatch) => (userDetails) => {
+const performRegistration = (cleaningTimeService, dispatch) => (userDetails, history) => {
     dispatch(registerUser());
     cleaningTimeService.registerUser(userDetails)
-        .then(response => registerUserSuccess(response.data))
-        .catch(error => registerUserFailed(error.response));
+        .then(response => dispatch(registerUserSuccess(response.data)))
+        .then(() => history.push("/login"))
+        .catch(error => dispatch(registerUserFailed(error.response)));
 };
 
 export default performRegistration;

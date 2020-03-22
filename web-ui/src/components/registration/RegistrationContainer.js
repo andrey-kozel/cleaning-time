@@ -28,9 +28,7 @@ const loginFormSettings = {
     }),
 
     handleSubmit: (values, {props}) => {
-        props.cleaningTimeService.registerUser(values)
-            .then(response => props.registerUser(response.data))
-            .catch(error => props.registerUserFailed(error.response));
+        props.performRegistration(values, props.history)
     },
 
     validationSchema: validationSchema,
@@ -46,7 +44,7 @@ const mapDispatchToProps = (dispatch, {cleaningTimeService}) => {
 };
 
 export default compose(
-    connect(null, mapDispatchToProps),
     withCleaningTimeService(),
+    connect(null, mapDispatchToProps),
     withFormik(loginFormSettings),
 )(Registration);

@@ -42,14 +42,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public AuthResponse registerUser(ApplicationUser user, String passwordConfirmation) {
+    public void registerUser(ApplicationUser user, String passwordConfirmation) {
         authValidator.validateRegistration(user, passwordConfirmation);
         applicationUserService.saveUser(user);
-        AuthRequest authRequest = AuthRequest.builder()
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .build();
-        return authenticate(authRequest);
     }
 
     @Override

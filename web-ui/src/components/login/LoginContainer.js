@@ -23,7 +23,7 @@ const loginFormSettings = {
     }),
 
     handleSubmit: (values, {props}) => {
-        props.performLogin(values);
+        props.performLogin(values, props.history);
     },
 
     validationSchema: validationSchema,

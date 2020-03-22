@@ -6,10 +6,10 @@ const loginUser = () => {
     }
 };
 
-const loginUserSuccess = (credentials) => {
+const loginUserSuccess = (token) => {
     return {
         type: LOGIN_SUCCESS,
-        payload: credentials
+        payload: token
     }
 };
 
@@ -20,10 +20,11 @@ const loginUserFailed = (response) => {
     }
 };
 
-const performLogin = (cleaningTimeService, dispatch) => (credentials) => {
+const performLogin = (cleaningTimeService, dispatch) => (credentials, history) => {
     dispatch(loginUser());
     cleaningTimeService.loginUser(credentials)
         .then(response => dispatch(loginUserSuccess(response.data)))
+        .then(() => history.push("/home"))
         .catch(error => dispatch(loginUserFailed(error.response)));
 };
 

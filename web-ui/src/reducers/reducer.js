@@ -1,19 +1,41 @@
-import {LOGIN_REQUEST, LOGIN_FAILED, REGISTER_USER} from '../action-types';
+import {
+    LOGIN_FAILED,
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    REGISTER_USER,
+    REGISTER_USER_FAILED,
+    REGISTER_USER_SUCCESS
+} from '../action-types';
+import {getAccessToken} from "../utils/token";
 
 const initialState = {
     login: {
-        accessToken: null,
+        loginInProgress: false,
+        accessToken: getAccessToken(),
+        loginSuccessful: null
+    },
+    registration: {
+        registrationInProgress: false,
         loginSuccessful: null
     }
 };
 
 const reducer = (state = initialState, action) => {
-    console.log(action.payload);
     switch (action.type) {
         case LOGIN_REQUEST:
             return {
                 ...state,
                 login: {
+                    loginInProgress: true,
+                    loginSuccessful: null,
+                    accessToken: null
+                }
+            };
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                login: {
+                    loginInProgress: false,
                     loginSuccessful: true,
                     accessToken: action.payload
                 }
@@ -22,6 +44,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 login: {
+                    loginInProgress: false,
                     loginSuccessful: false,
                     accessToken: null
                 }
@@ -29,15 +52,27 @@ const reducer = (state = initialState, action) => {
         case REGISTER_USER:
             return {
                 ...state,
-                login: {
-                    loginSuccessful: true,
-                    accessToken: action.payload
+                registration: {
+                    registrationSuccessful: null,
+                    registrationInProgress: true
                 }
             };
-        case 'REGISTER_USER_SUCCESSFUL':
-            return state;
-        case 'REGISTER_USER_FAILED':
-            return state;
+        case REGISTER_USER_SUCCESS:
+            return {
+                ...state,
+                registration: {
+                    registrationSuccessful: true,
+                    registrationInProgress: false
+                }
+            };
+        case REGISTER_USER_FAILED:
+            return {
+                ...state,
+                registration: {
+                    registrationSuccessful: false,
+                    registrationInProgress: false
+                }
+            };
         default:
             return state;
     }

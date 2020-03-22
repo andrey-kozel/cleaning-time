@@ -1,8 +1,6 @@
 package dev.akozel.cleaningtime.rest.feature.registration;
 
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
-import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
-import dev.akozel.cleaningtime.rest.feature.auth.dto.AuthResponseDto;
 import dev.akozel.cleaningtime.rest.feature.auth.service.AuthenticationService;
 import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityDto;
 import dev.akozel.cleaningtime.rest.feature.registration.dto.RegistrationDto;
@@ -45,12 +43,12 @@ public class RegistrationsResource {
 
     @ApiOperation(value = "Register new user", response = CommunityDto.class)
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<AuthResponseDto> createUser(@RequestBody RegistrationDto dto) {
+    public ResponseEntity<?> createUser(@RequestBody RegistrationDto dto) {
         ApplicationUser user = conversionService.convert(dto, ApplicationUser.class);
-        AuthResponse authResponse = authenticationService.registerUser(user, dto.getPasswordConfirmation());
-        AuthResponseDto authResponseDto = conversionService.convert(authResponse, AuthResponseDto.class);
+        authenticationService.registerUser(user, dto.getPasswordConfirmation());
         return ResponseEntity
-                .ok(authResponseDto);
+                .noContent()
+                .build();
     }
 
 }

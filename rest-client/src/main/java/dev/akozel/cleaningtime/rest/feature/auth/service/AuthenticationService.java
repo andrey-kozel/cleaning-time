@@ -13,7 +13,7 @@ import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
  */
 public interface AuthenticationService {
 
-    AuthResponse registerUser(ApplicationUser user, String passwordConfirmation);
+    void registerUser(ApplicationUser user, String passwordConfirmation);
 
     AuthResponse authenticate(AuthRequest request);
 
