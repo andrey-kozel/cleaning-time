@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import {compose} from "redux";
 
 import Login from "./Login";
-import {performLogin} from "../../actions/actions";
+import {performLogin} from "../../actions";
 import {withCleaningTimeService} from "../hoc";
 
 const validationSchema = Yup.object().shape({
@@ -23,7 +23,7 @@ const loginFormSettings = {
     }),
 
     handleSubmit: (values, {props}) => {
-        props.performLogin(values);
+        props.performLogin(values, props.history);
     },
 
     validationSchema: validationSchema,

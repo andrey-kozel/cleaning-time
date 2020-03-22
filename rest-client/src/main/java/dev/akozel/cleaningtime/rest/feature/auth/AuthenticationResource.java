@@ -1,9 +1,11 @@
-package dev.akozel.cleaningtime.rest.feature.auth.rest;
+package dev.akozel.cleaningtime.rest.feature.auth;
 
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthRequest;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
+import dev.akozel.cleaningtime.rest.feature.auth.domain.RefreshTokenRequest;
 import dev.akozel.cleaningtime.rest.feature.auth.dto.AuthRequestDto;
 import dev.akozel.cleaningtime.rest.feature.auth.dto.AuthResponseDto;
+import dev.akozel.cleaningtime.rest.feature.auth.dto.RefreshTokenRequestDto;
 import dev.akozel.cleaningtime.rest.feature.auth.service.AuthenticationService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,17 @@ public class AuthenticationResource {
         AuthResponseDto authResponseDto = conversionService.convert(token, AuthResponseDto.class);
         return ResponseEntity
                 .ok(authResponseDto);
+    }
+
+    @ApiOperation(value = "Refreshes access token", response = AuthResponseDto.class)
+    @RequestMapping(path = "/refresh", method = RequestMethod.POST)
+    public ResponseEntity<AuthResponseDto> refreshToken(@Valid @RequestBody
+                                                                RefreshTokenRequestDto dto) {
+        RefreshTokenRequest request = conversionService.convert(dto, RefreshTokenRequest.class);
+        AuthResponse token = authenticationService.refreshToken(request);
+        AuthResponseDto authResponse = conversionService.convert(token, AuthResponseDto.class);
+        return ResponseEntity
+                .ok(authResponse);
     }
 
 }

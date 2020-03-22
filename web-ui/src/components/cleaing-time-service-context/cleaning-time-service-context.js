@@ -1,4 +1,4 @@
-import React, {createContext} from 'react';
+import {createContext} from 'react';
 
 const {Provider: CleaningTimeServiceProvider, Consumer: CleaningTimeServiceConsumer} = createContext();
 
