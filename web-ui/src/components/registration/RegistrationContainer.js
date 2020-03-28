@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import {compose} from "redux";
 
 import Registration from "./Registration";
-import {performRegistration} from "../../actions";
+import {performRegistration} from "../../ducks/registration";
 import {withCleaningTimeService} from "../hoc";
 
 const validationSchema = Yup.object().shape({
