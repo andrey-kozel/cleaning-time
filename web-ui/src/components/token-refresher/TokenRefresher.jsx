@@ -3,7 +3,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 
 import {withCleaningTimeService} from "../hoc";
-import {isTokenAlmostExpired, performRefresh} from '../../actions'
+import {isTokenAlmostExpired, performRefresh} from '../../ducks/token-refresh'
 
 const TokenRefresher = ({performRefresh, isTokenAlmostExpired}) => {
     const refreshIfAlmostExpired = () => {
