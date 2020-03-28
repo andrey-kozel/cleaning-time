@@ -29,7 +29,7 @@ public class RulesValidatorImplTest {
         tooShortString.setSomeString(TOO_SHORT_STRING_VALUE);
 
         //when
-        when(sut).validate(tooShortString);
+        when(() -> sut.validate(tooShortString));
 
         //then
         assertThat(caughtException())
@@ -49,7 +49,7 @@ public class RulesValidatorImplTest {
                 .build();
 
         //when
-        when(sut).validate(nullObjectAtTheLowLevel);
+        when(() -> sut.validate(nullObjectAtTheLowLevel));
 
         //then
         assertThat(caughtException())
@@ -65,7 +65,7 @@ public class RulesValidatorImplTest {
         tooShortString.setSomeString(TOO_SHORT_STRING_VALUE);
 
         //when
-        when(sut).validate(tooShortString);
+        when(() -> sut.validate(tooShortString));
 
         //then
         assertThat(caughtException())
@@ -81,7 +81,7 @@ public class RulesValidatorImplTest {
         tooShortString.setSomeString(TOO_SHORT_STRING_VALUE);
 
         //when
-        when(sut).validate(tooShortString);
+        when(() -> sut.validate(tooShortString));
 
         //then
         assertThat(caughtException())
@@ -97,7 +97,7 @@ public class RulesValidatorImplTest {
         outOfRange.setSomeLong(120L);
 
         //when
-        when(sut).validate(outOfRange);
+        when(() -> sut.validate(outOfRange));
 
         //then
         assertThat(caughtException())
@@ -115,7 +115,7 @@ public class RulesValidatorImplTest {
         String value = "any_value";
 
         //when
-        when(sut).raiseError(message, fieldName, value);
+        when(() -> sut.raiseError(message, fieldName, value));
 
         //then
         assertThat(caughtException())

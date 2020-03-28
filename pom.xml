@@ -16,27 +16,27 @@
     </modules>
 
     <properties>
-        <lombok.version>1.18.10</lombok.version>
+        <lombok.version>1.18.12</lombok.version>
         <javax.inject.version>1</javax.inject.version>
         <junit.version>4.13</junit.version>
-        <mockito-core.version>3.2.4</mockito-core.version>
-        <assertj-core.version>3.14.0</assertj-core.version>
-        <commons-lang3.version>3.9</commons-lang3.version>
+        <mockito-core.version>3.3.3</mockito-core.version>
+        <assertj-core.version>3.15.0</assertj-core.version>
+        <commons-lang3.version>3.10</commons-lang3.version>
         <commons-text.version>1.8</commons-text.version>
-        <catch-exception.version>1.4.4</catch-exception.version>
+        <catch-exception.version>2.0</catch-exception.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <JUnitParams.version>1.1.1</JUnitParams.version>
-        <commons-collections4.version>4.1</commons-collections4.version>
-        <javax.el.version>3.0.0</javax.el.version>
-        <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <javax.el.version>3.0.1-b06</javax.el.version>
+        <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <jjwt.version>0.9.1</jjwt.version>
-        <spring-boot-dependencies.version>2.2.4.RELEASE</spring-boot-dependencies.version>
+        <spring-boot-dependencies.version>2.2.6.RELEASE</spring-boot-dependencies.version>
         <jbcrypt.version>0.4</jbcrypt.version>
-        <postgresql.version>42.2.10</postgresql.version>
+        <postgresql.version>42.2.11</postgresql.version>
         <jooq.version>3.13.1</jooq.version>
     </properties>
 

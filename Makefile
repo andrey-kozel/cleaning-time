@@ -11,6 +11,9 @@ stop-postgres:
 package:
 	@mvn clean package
 
+update-dependencies:
+	@mvn versions:update-properties -DgenerateBackupPoms=false
+
 test:
 	@mvn test
 

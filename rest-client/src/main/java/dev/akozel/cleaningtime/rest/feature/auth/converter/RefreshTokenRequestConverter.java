@@ -5,6 +5,13 @@ import dev.akozel.cleaningtime.rest.feature.auth.dto.RefreshTokenRequestDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * RefreshTokenRequestConverter. Converter for refresh token request
+ * <p>
+ * Date: 28/03/2020
+ *
+ * @author Andrey Kozel
+ */
 @Component
 public class RefreshTokenRequestConverter implements Converter<RefreshTokenRequestDto, RefreshTokenRequest> {
 

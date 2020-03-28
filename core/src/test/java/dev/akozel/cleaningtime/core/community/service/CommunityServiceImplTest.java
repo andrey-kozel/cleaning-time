@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import static com.googlecode.catchexception.apis.BDDCatchException.when;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.BDDMockito.given;
@@ -76,8 +77,7 @@ public class CommunityServiceImplTest {
                 .validateCreate(isA(Community.class));
 
         //when
-        BDDCatchException.when(sut)
-                .create(invalidCommunity);
+        when(() -> sut.create(invalidCommunity));
 
         //then
         assertThat(BDDCatchException.caughtException())

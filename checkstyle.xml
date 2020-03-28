@@ -32,6 +32,11 @@
         <property name="message" value="Line has trailing spaces."/>
     </module>-->
 
+    <module name="LineLength">
+        <property name="max" value="120"/>
+        <property name="ignorePattern" value="@version|@see|@todo|TODO"/>
+    </module>
+
     <module name="TreeWalker">
 
         <property name="tabWidth" value="4"/>
@@ -43,11 +48,6 @@
 <!--        <module name="RightCurly">-->
 <!--            <property name="option" value="alone"/>-->
 <!--        </module>-->
-
-        <module name="LineLength">
-            <property name="max" value="120"/>
-            <property name="ignorePattern" value="@version|@see|@todo|TODO"/>
-        </module>
 
         <module name="MemberName"/>
 
