@@ -1,5 +1,5 @@
 import React from 'react'
-import {CleaningTimeServiceConsumer} from "../contexts";
+import {CleaningTimeServiceConsumer} from "../cleaning-time-service-context";
 
 const withCleaningTimeService = () => (Wrapped) => {
 

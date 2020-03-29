@@ -20,7 +20,7 @@ const App = () => {
                 <Route path="/registration"
                        component={RegistrationPage}
                        exact/>
-                <PrivateRoute path="/home"
+                <PrivateRoute path={["/", "/home"]}
                               component={HomePage}
                               exact/>
             </Switch>

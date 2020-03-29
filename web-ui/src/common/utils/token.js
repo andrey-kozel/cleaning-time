@@ -45,8 +45,13 @@ const isTokenExpired = (payload) => {
 
 };
 
+const cleanUpToken = () => {
+    sessionStorage.removeItem('token');
+};
+
 export {
     saveToken,
     getAccessToken,
-    isExpiredInASeconds
+    isExpiredInASeconds,
+    cleanUpToken
 }
