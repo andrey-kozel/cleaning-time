@@ -1,9 +1,10 @@
 import {createReducer} from 'redux-create-reducer';
-import {getAccessToken} from "../../../common/utils/token";
+import {getAccessToken} from "../../utils/token";
 
 const LOGIN_REQUEST = "cleaningTime/login/LOGIN_REQUEST";
 const LOGIN_SUCCESS = "cleaningTime/login/LOGIN_SUCCESS";
 const LOGIN_FAILED = "cleaningTime/login/LOGIN_FAILED";
+const LOGOUT = "cleaningTime/header/logout/LOGOUT";
 
 const loginUser = () => {
     return {
@@ -25,6 +26,12 @@ const loginUserFailed = (response) => {
     }
 };
 
+const logout = () => {
+    return {
+        type: LOGOUT
+    }
+};
+
 const performLogin = (cleaningTimeService, dispatch) => (credentials, history) => {
     dispatch(loginUser());
     cleaningTimeService.loginUser(credentials)
@@ -33,10 +40,15 @@ const performLogin = (cleaningTimeService, dispatch) => (credentials, history) =
         .catch(error => dispatch(loginUserFailed(error.response)));
 };
 
+const performLogout = (dispatch) => (history) => {
+    dispatch(logout());
+    history.push("/login")
+};
+
 const initialState = {
     loginInProgress: false,
-    accessToken: getAccessToken(),
-    loginSuccessful: null
+    loginSuccessful: null,
+    accessToken: getAccessToken()
 };
 
 const setLoginRequested = () => ({
@@ -57,15 +69,24 @@ const setLoginFailed = () => ({
     accessToken: null
 });
 
+const setLogoutRequested = () => ({
+    loginInProgress: false,
+    loginSuccessful: null,
+    accessToken: null
+});
+
 const loginReducer = createReducer(initialState, {
     [LOGIN_REQUEST]: setLoginRequested,
     [LOGIN_SUCCESS]: setLoginSucceed,
-    [LOGIN_FAILED]: setLoginFailed
+    [LOGIN_FAILED]: setLoginFailed,
+    [LOGOUT]: setLogoutRequested
 });
 
 export {
     LOGIN_SUCCESS,
+    LOGOUT,
     performLogin,
+    performLogout
 };
 
 export default loginReducer;

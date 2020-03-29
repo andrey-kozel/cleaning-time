@@ -6,8 +6,8 @@ import {BrowserRouter as Router} from "react-router-dom";
 
 
 import store from './app/store'
-import ErrorBoundary from "./common/components/ui/errors";
-import {CleaningTimeServiceProvider} from './common/components/contexts'
+import ErrorBoundary from "./common/components/error-handling";
+import {CleaningTimeServiceProvider} from './common/components/cleaning-time-service-context'
 import CleaningTimeService from "./common/services/cleaning-time-service";
 import App from './app';
 import theme from './app/theme'

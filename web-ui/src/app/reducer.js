@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 
-import loginReducer from "../features/components/login-page/ducks";
+import loginReducer from "../common/components/auth/ducks";
 import registrationReducer from "../features/components/registration-page/ducks";
 import refreshReducer from "../features/components/token-refresher/ducks";
 
