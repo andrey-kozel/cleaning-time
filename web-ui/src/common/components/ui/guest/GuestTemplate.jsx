@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
 
-import Background from '../../assets/6ed268aa48e1f88b6d8e4a761dc83e5418cae11e-min.jpg'
+import Background from '../../../../assets/6ed268aa48e1f88b6d8e4a761dc83e5418cae11e-min.jpg'
 
 const useStyles = makeStyles(theme => ({
     loginBackground: {

@@ -11,17 +11,17 @@ import {
     Typography
 } from '@material-ui/core';
 import {Link} from 'react-router-dom';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 import {makeStyles} from "@material-ui/core/styles";
-import GuestTemplate from "../guest/GuestTemplate";
+import GuestTemplate from "../../../common/components/ui/guest/GuestTemplate";
 
 const useStyles = makeStyles(theme => ({
-    registrationActions: {
+    loginActions: {
         marginTop: theme.spacing(4)
     }
 }));
 
-const Registration = (props) => {
+const Login = (props) => {
     const classes = useStyles();
     const {
         values,
@@ -40,12 +40,12 @@ const Registration = (props) => {
                     <CardHeader
                         avatar={
                             <Avatar>
-                                <ExitToAppIcon color="primary"/>
+                                <LockOpenIcon color="primary"/>
                             </Avatar>
                         }
                         title={
                             <Typography variant="h4">
-                                Registration
+                                Login
                             </Typography>
                         }
                     />
@@ -78,23 +78,9 @@ const Registration = (props) => {
                                     margin="normal"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    type="password"
-                                    error={errors.passwordConfirmation && touched.passwordConfirmation}
-                                    label="Password confirmation"
-                                    name="passwordConfirmation"
-                                    value={values.passwordConfirmation}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    helperText={(errors.passwordConfirmation && touched.passwordConfirmation) && errors.passwordConfirmation}
-                                    margin="normal"
-                                />
-                            </Grid>
                         </Grid>
                     </CardContent>
-                    <CardActions className={classes.registrationActions}>
+                    <CardActions className={classes.loginActions}>
                         <Grid container direction="row" spacing={1}>
                             <Grid item xs={6}/>
                             <Grid item xs={3}>
@@ -102,9 +88,9 @@ const Registration = (props) => {
                                     component={Link}
                                     color="secondary"
                                     fullWidth
-                                    to="/login"
+                                    to="/registration"
                                 >
-                                    Login
+                                    Sign up
                                 </Button>
                             </Grid>
                             <Grid item xs={3}>
@@ -115,7 +101,7 @@ const Registration = (props) => {
                                     color="primary"
                                     fullWidth
                                 >
-                                    Register
+                                    Login
                                 </Button>
                             </Grid>
                         </Grid>
@@ -126,4 +112,4 @@ const Registration = (props) => {
     );
 };
 
-export default Registration;
+export default Login;

@@ -2,8 +2,8 @@ import React, {useEffect} from 'react'
 import {compose} from "redux";
 import {connect} from "react-redux";
 
-import {withCleaningTimeService} from "../hoc";
-import {isTokenAlmostExpired, performRefresh} from '../../ducks/token-refresh'
+import {withCleaningTimeService} from "../../../common/components/hoc";
+import {isTokenAlmostExpired, performRefresh} from './ducks'
 
 const TokenRefresher = ({performRefresh, isTokenAlmostExpired}) => {
     const refreshIfAlmostExpired = () => {
