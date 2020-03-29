@@ -2,11 +2,12 @@ import React, {Fragment} from 'react'
 import {CssBaseline} from "@material-ui/core";
 import {Route, Switch} from 'react-router-dom'
 
-import PrivateRoute from "../private-route";
-import TokenRefresher from '../token-refresher'
-import LoginPage from "../login";
-import RegistrationPage from "../registration";
-import HomePage from '../home'
+import PrivateRoute from "../common/components/private-route";
+
+import TokenRefresher from '../features/components/token-refresher'
+import LoginPage from "../features/components/login-page";
+import RegistrationPage from "../features/components/registration-page";
+import HomePage from '../features/components/home-page'
 
 const App = () => {
     return (

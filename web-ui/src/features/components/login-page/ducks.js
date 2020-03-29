@@ -1,5 +1,5 @@
 import {createReducer} from 'redux-create-reducer';
-import {getAccessToken} from "../utils/token";
+import {getAccessToken} from "../../../common/utils/token";
 
 const LOGIN_REQUEST = "cleaningTime/login/LOGIN_REQUEST";
 const LOGIN_SUCCESS = "cleaningTime/login/LOGIN_SUCCESS";

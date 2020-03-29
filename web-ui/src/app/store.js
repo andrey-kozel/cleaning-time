@@ -1,9 +1,11 @@
 import {applyMiddleware, createStore} from 'redux'
 
-import reducer from './reducers'
-import {LOGIN_SUCCESS} from "./ducks/login";
-import {REFRESH_SUCCESS} from "./ducks/token-refresh";
-import {saveToken} from "./utils/token";
+import reducer from './reducer'
+import {saveToken} from "../common/utils/token";
+
+import {LOGIN_SUCCESS} from "../features/components/login-page/ducks";
+import {REFRESH_SUCCESS} from "../features/components/token-refresher/ducks";
+
 
 const saveTokenMiddleware = () => (dispatch) => (action) => {
     switch (action.type) {

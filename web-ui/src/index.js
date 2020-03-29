@@ -5,12 +5,12 @@ import {ThemeProvider} from '@material-ui/core/styles'
 import {BrowserRouter as Router} from "react-router-dom";
 
 
-import store from './store'
-import ErrorBoundary from "./components/error-boundary/error-boundary";
-import {CleaningTimeServiceProvider} from './components/cleaing-time-service-context'
-import CleaningTimeService from "./services/cleaning-time-service";
-import App from './components/app';
-import theme from './components/app/theme'
+import store from './app/store'
+import ErrorBoundary from "./common/components/ui/errors";
+import {CleaningTimeServiceProvider} from './common/components/contexts'
+import CleaningTimeService from "./common/services/cleaning-time-service";
+import App from './app';
+import theme from './app/theme'
 
 const cleaningTimeService = new CleaningTimeService();
 

@@ -4,8 +4,8 @@ import * as Yup from 'yup'
 import {compose} from "redux";
 
 import Login from "./Login";
-import {performLogin} from "../../ducks/login";
-import {withCleaningTimeService} from "../hoc";
+import {performLogin} from "./ducks";
+import {withCleaningTimeService} from "../../../common/components/hoc";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()

@@ -1,5 +1,5 @@
 import {createReducer} from 'redux-create-reducer';
-import {getAccessToken, isExpiredInASeconds} from "../utils/token";
+import {getAccessToken, isExpiredInASeconds} from "../../../common/utils/token";
 
 const REFRESH_REQUEST = "cleaningTime/token-refresh/REFRESH_REQUEST";
 const REFRESH_SUCCESS = "cleaningTime/token-refresh/REFRESH_SUCCESS";

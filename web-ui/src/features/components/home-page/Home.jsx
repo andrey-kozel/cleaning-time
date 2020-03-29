@@ -1,5 +1,5 @@
 import React from 'react'
-import AppHeader from "../header/AppHeader";
+import AppHeader from "../../../common/components/ui/header/AppHeader";
 
 const Home = () => {
     return (
