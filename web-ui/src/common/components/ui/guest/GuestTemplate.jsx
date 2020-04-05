@@ -25,7 +25,7 @@ const GuestTemplate = (props) => {
             alignItems="center"
             justify="center"
         >
-            <Grid item xs={3}>
+            <Grid item xs={12} md={6} lg={3}>
                 {props.children}
             </Grid>
         </Grid>

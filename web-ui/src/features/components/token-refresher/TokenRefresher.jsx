@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import {compose} from "redux";
 import {connect} from "react-redux";
 
@@ -6,11 +6,11 @@ import {withCleaningTimeService} from "../../../common/components/hoc";
 import {isTokenAlmostExpired, performRefresh} from './ducks'
 
 const TokenRefresher = ({performRefresh, isTokenAlmostExpired}) => {
-    const refreshIfAlmostExpired = () => {
+    const refreshIfAlmostExpired = useCallback(() => {
         if (isTokenAlmostExpired()) {
             performRefresh()
         }
-    };
+    }, [performRefresh, isTokenAlmostExpired]);
 
     useEffect(() => {
         const intervalId = setInterval(refreshIfAlmostExpired, 20000);

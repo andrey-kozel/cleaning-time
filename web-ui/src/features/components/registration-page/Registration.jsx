@@ -96,8 +96,8 @@ const Registration = (props) => {
                     </CardContent>
                     <CardActions className={classes.registrationActions}>
                         <Grid container direction="row" spacing={1}>
-                            <Grid item xs={6}/>
-                            <Grid item xs={3}>
+                            <Grid item xs={false} sm={4}/>
+                            <Grid item xs={12} sm={4}>
                                 <Button
                                     component={Link}
                                     color="secondary"
@@ -107,7 +107,7 @@ const Registration = (props) => {
                                     Login
                                 </Button>
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={12} sm={4}>
                                 <Button
                                     disabled={!dirty}
                                     type="submit"

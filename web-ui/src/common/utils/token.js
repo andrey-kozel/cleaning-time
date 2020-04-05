@@ -9,7 +9,6 @@ const getAccessToken = () => {
         sessionStorage.removeItem('token');
         return null;
     }
-    console.log(payload);
     return token;
 };
 
