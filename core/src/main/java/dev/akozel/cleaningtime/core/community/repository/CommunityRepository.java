@@ -1,5 +1,6 @@
 package dev.akozel.cleaningtime.core.community.repository;
 
+import dev.akozel.cleaningtime.core.common.model.PaginatedItems;
 import dev.akozel.cleaningtime.core.common.repository.EntityRepository;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 
@@ -16,4 +17,5 @@ public interface CommunityRepository extends EntityRepository<Community> {
 
     Community update(Long id, Community community);
 
+    PaginatedItems<Community> find(Long userId);
 }

@@ -13,7 +13,7 @@ import javax.inject.Named;
  * @author Andrey Kozel
  */
 @Named
-public class UserConverterImpl implements UserConverter {
+public class UserRecordConverterImpl implements UserRecordConverter {
 
     @Override
     public UsersRecord convert(ApplicationUser user) {

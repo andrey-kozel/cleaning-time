@@ -13,7 +13,7 @@ import javax.inject.Named;
  * @author Andrey Kozel
  */
 @Named
-public class CommunityConverterImpl implements CommunityConverter {
+public class CommunityRecordConverterImpl implements CommunityRecordConverter {
 
     @Override
     public CommunitiesRecord convert(Community source) {

@@ -21,4 +21,8 @@ export default class CleaningTimeService {
         return axios.post('registrations', userDetails);
     }
 
+    getCommunities() {
+        return axios.get('communities');
+    }
+
 }

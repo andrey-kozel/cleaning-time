@@ -1,4 +1,4 @@
-package dev.akozel.cleaningtime.rest.common.converter;
+package dev.akozel.cleaningtime.rest.common.mapper;
 
 import dev.akozel.cleaningtime.rest.common.dto.IdResponseDto;
 import org.springframework.core.convert.converter.Converter;

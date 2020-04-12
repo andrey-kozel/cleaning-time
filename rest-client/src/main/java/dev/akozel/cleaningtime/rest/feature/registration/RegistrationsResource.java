@@ -4,10 +4,10 @@ import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.rest.feature.auth.service.AuthenticationService;
 import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityDto;
 import dev.akozel.cleaningtime.rest.feature.registration.dto.RegistrationDto;
+import dev.akozel.cleaningtime.rest.feature.registration.mapper.RegistrationMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -32,19 +32,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegistrationsResource {
 
     private AuthenticationService authenticationService;
-    private ConversionService conversionService;
+    private RegistrationMapper registrationMapper;
 
     @Autowired
     public RegistrationsResource(AuthenticationService authenticationService,
-                                 ConversionService conversionService) {
+                                 RegistrationMapper registrationMapper) {
         this.authenticationService = authenticationService;
-        this.conversionService = conversionService;
+        this.registrationMapper = registrationMapper;
     }
 
     @ApiOperation(value = "Register new user", response = CommunityDto.class)
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody RegistrationDto dto) {
-        ApplicationUser user = conversionService.convert(dto, ApplicationUser.class);
+        ApplicationUser user = registrationMapper.fromContract(dto);
         authenticationService.registerUser(user, dto.getPasswordConfirmation());
         return ResponseEntity
                 .noContent()

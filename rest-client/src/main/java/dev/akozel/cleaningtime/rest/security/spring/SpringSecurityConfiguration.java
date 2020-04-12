@@ -1,8 +1,10 @@
 package dev.akozel.cleaningtime.rest.security.spring;
 
 import dev.akozel.cleaningtime.rest.security.jwt.service.JwtTokenService;
+import dev.akozel.cleaningtime.rest.security.spring.filter.ExceptionHandlingFilter;
 import dev.akozel.cleaningtime.rest.security.spring.filter.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,6 +15,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 /**
  * SecurityConfiguration. Security configuration for the available resources
@@ -25,17 +29,20 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private PasswordEncoder passwordEncoder;
-    private UserDetailsService userDetailsService;
-    private JwtTokenService jwtTokenService;
+    private final PasswordEncoder passwordEncoder;
+    private final UserDetailsService userDetailsService;
+    private final JwtTokenService jwtTokenService;
+    private final HandlerExceptionResolver resolver;
 
     @Autowired
     public SpringSecurityConfiguration(PasswordEncoder passwordEncoder,
                                        UserDetailsService userDetailsService,
-                                       JwtTokenService jwtTokenService) {
+                                       JwtTokenService jwtTokenService,
+                                       @Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
         this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
         this.jwtTokenService = jwtTokenService;
+        this.resolver = resolver;
     }
 
     @Autowired
@@ -96,6 +103,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private void addFilters(HttpSecurity http) {
         http.addFilterAfter(new JwtAuthenticationFilter(jwtTokenService, userDetailsService),
                 BasicAuthenticationFilter.class);
+        http.addFilterBefore(new ExceptionHandlingFilter(resolver), CorsFilter.class);
     }
 
 }

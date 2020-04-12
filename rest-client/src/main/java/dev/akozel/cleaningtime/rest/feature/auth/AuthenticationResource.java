@@ -1,5 +1,6 @@
 package dev.akozel.cleaningtime.rest.feature.auth;
 
+import dev.akozel.cleaningtime.rest.feature.auth.converter.AuthMapper;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthRequest;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.AuthResponse;
 import dev.akozel.cleaningtime.rest.feature.auth.domain.RefreshTokenRequest;
@@ -9,7 +10,6 @@ import dev.akozel.cleaningtime.rest.feature.auth.dto.RefreshTokenRequestDto;
 import dev.akozel.cleaningtime.rest.feature.auth.service.AuthenticationService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,22 +29,23 @@ import javax.validation.Valid;
 @RequestMapping("v1/auth")
 public class AuthenticationResource {
 
-    private AuthenticationService authenticationService;
-    private ConversionService conversionService;
+    private final AuthenticationService authenticationService;
+    private final AuthMapper authMapper;
 
     @Autowired
-    public AuthenticationResource(AuthenticationService authenticationService, ConversionService conversionService) {
+    public AuthenticationResource(AuthenticationService authenticationService,
+                                  AuthMapper authMapper) {
         this.authenticationService = authenticationService;
-        this.conversionService = conversionService;
+        this.authMapper = authMapper;
     }
 
     @ApiOperation(value = "Generates access token for valid user", response = AuthResponseDto.class)
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<AuthResponseDto> authenticate(@Valid @RequestBody
                                                                 AuthRequestDto authRequestDto) {
-        AuthRequest authRequest = conversionService.convert(authRequestDto, AuthRequest.class);
+        AuthRequest authRequest = authMapper.fromContract(authRequestDto);
         AuthResponse token = authenticationService.authenticate(authRequest);
-        AuthResponseDto authResponseDto = conversionService.convert(token, AuthResponseDto.class);
+        AuthResponseDto authResponseDto = authMapper.toContract(token);
         return ResponseEntity
                 .ok(authResponseDto);
     }
@@ -53,9 +54,9 @@ public class AuthenticationResource {
     @RequestMapping(path = "/refresh", method = RequestMethod.POST)
     public ResponseEntity<AuthResponseDto> refreshToken(@Valid @RequestBody
                                                                 RefreshTokenRequestDto dto) {
-        RefreshTokenRequest request = conversionService.convert(dto, RefreshTokenRequest.class);
+        RefreshTokenRequest request = authMapper.fromContract(dto);
         AuthResponse token = authenticationService.refreshToken(request);
-        AuthResponseDto authResponse = conversionService.convert(token, AuthResponseDto.class);
+        AuthResponseDto authResponse = authMapper.toContract(token);
         return ResponseEntity
                 .ok(authResponse);
     }

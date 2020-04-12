@@ -10,7 +10,7 @@ import dev.akozel.cleaningtime.repository.postgres.tables.records.CommunitiesRec
  *
  * @author Andrey Kozel
  */
-public interface CommunityConverter {
+public interface CommunityRecordConverter {
 
     CommunitiesRecord convert(Community source);
 
