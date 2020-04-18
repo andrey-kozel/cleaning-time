@@ -9,7 +9,7 @@ import LoginPage from "../features/components/login-page";
 import RegistrationPage from "../features/components/registration-page";
 import HomePage from '../features/components/home-page'
 import AppHeader from "../common/components/ui/header/AppHeaderContainer";
-import Groups from "../features/components/groups/Groups";
+import Communities from "../features/components/communities/CommunitiesContainer";
 import Reports from "../features/components/reports/Reports";
 import IndexPage from "../features/components/index-page";
 
@@ -31,8 +31,8 @@ const App = () => {
                 <PrivateRoute path="/home"
                               component={HomePage}
                               exact/>
-                <PrivateRoute path="/groups"
-                              component={Groups}
+                <PrivateRoute path="/communities"
+                              component={Communities}
                               exact/>
                 <PrivateRoute path="/reports"
                               component={Reports}

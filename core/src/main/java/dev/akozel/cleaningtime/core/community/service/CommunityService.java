@@ -1,5 +1,6 @@
 package dev.akozel.cleaningtime.core.community.service;
 
+import dev.akozel.cleaningtime.core.common.model.PaginatedItems;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 
 /**
@@ -16,4 +17,7 @@ public interface CommunityService {
     Long create(Community community);
 
     Community update(Long id, Community community);
+
+    PaginatedItems<Community> findByUser();
+
 }

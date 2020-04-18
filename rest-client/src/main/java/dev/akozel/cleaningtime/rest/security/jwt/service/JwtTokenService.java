@@ -1,6 +1,6 @@
 package dev.akozel.cleaningtime.rest.security.jwt.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
+import dev.akozel.cleaningtime.rest.feature.auth.model.ApplicationUserDetails;
 
 /**
  * JwtTokenManager. Class for generation and validation of JWT token
@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public interface JwtTokenService {
 
-    String generateAccessToken(UserDetails user);
+    String generateAccessToken(ApplicationUserDetails user);
 
     String getUsernameByAccessToken(String jwtToken);
 

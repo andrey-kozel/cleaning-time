@@ -4,7 +4,7 @@ import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
 import dev.akozel.cleaningtime.repository.postgres.tables.Users;
 import dev.akozel.cleaningtime.repository.postgres.tables.records.UsersRecord;
-import dev.akozel.cleaningtime.repository.postgres.user.converter.UserConverter;
+import dev.akozel.cleaningtime.repository.postgres.user.converter.UserRecordConverter;
 import org.jooq.DSLContext;
 
 import javax.inject.Inject;
@@ -21,11 +21,11 @@ import javax.inject.Named;
 public class PostgresUserRepository implements ApplicationUserRepository {
 
     private DSLContext context;
-    private UserConverter converter;
+    private UserRecordConverter converter;
 
     @Inject
     public PostgresUserRepository(DSLContext context,
-                                  UserConverter converter) {
+                                  UserRecordConverter converter) {
         this.context = context;
         this.converter = converter;
     }

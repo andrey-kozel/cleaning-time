@@ -10,8 +10,8 @@ const links = [
         path: "/home"
     },
     {
-        name: "Groups",
-        path: "/groups"
+        name: "Communities",
+        path: "/communities"
     },
     {
         name: "Reports",

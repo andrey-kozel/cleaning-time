@@ -10,6 +10,7 @@ package dev.akozel.cleaningtime.rest.common.exceptionhandling.dto;
 public enum ErrorType {
 
     UNEXPECTED_ERROR,
-    VALIDATION_ERROR
+    VALIDATION_ERROR,
+    INVALID_TOKEN
 
 }

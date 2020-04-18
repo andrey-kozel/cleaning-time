@@ -34,22 +34,22 @@ const performRegistration = (cleaningTimeService, dispatch) => (userDetails, his
 
 const initialState = {
     registrationInProgress: false,
-    registrationSuccessful: null
+    registrationFailed: false
 };
 
 const setRegisterUserRequested = () => ({
     registrationInProgress: true,
-    registrationSuccessful: null
+    registrationFailed: false
 });
 
 const setUserRegistrationSucceed = () => ({
     registrationInProgress: false,
-    registrationSuccessful: true
+    registrationFailed: false
 });
 
 const setUserRegistrationFailed = () => ({
     registrationInProgress: false,
-    registrationSuccessful: false
+    registrationFailed: true
 });
 
 const registrationReducer = createReducer(initialState, {

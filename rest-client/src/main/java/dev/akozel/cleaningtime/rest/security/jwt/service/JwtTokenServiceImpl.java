@@ -1,13 +1,13 @@
 package dev.akozel.cleaningtime.rest.security.jwt.service;
 
 import dev.akozel.cleaningtime.core.common.time.TimeService;
+import dev.akozel.cleaningtime.rest.feature.auth.model.ApplicationUserDetails;
 import dev.akozel.cleaningtime.rest.security.jwt.exception.InvalidJwtTokenException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,6 +22,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 
     private static final String TOKEN_PREFIX = "Bearer ";
     private static final String AUTHORITY_CLAIM = "authority";
+    private static final String ID_CLAIM = "id";
 
     @Value("${jwt.validity}")
     private Long validityTimeMillis;
@@ -62,12 +63,13 @@ public class JwtTokenServiceImpl implements JwtTokenService {
     }
 
     @Override
-    public String generateAccessToken(UserDetails user) {
+    public String generateAccessToken(ApplicationUserDetails user) {
         String token = Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(timeService.getCurrentTime())
                 .setExpiration(timeService.getCurrentTmeFromNow(validityTimeMillis))
                 .claim(AUTHORITY_CLAIM, user.getAuthorities())
+                .claim(ID_CLAIM, user.getId())
                 .signWith(SignatureAlgorithm.HS384, secret)
                 .compact();
         return TOKEN_PREFIX + token;

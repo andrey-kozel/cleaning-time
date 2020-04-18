@@ -10,7 +10,7 @@ import dev.akozel.cleaningtime.repository.postgres.tables.records.UsersRecord;
  *
  * @author Andrey Kozel
  */
-public interface UserConverter {
+public interface UserRecordConverter {
 
     UsersRecord convert(ApplicationUser user);
 
