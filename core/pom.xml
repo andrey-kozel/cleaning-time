@@ -40,6 +40,12 @@
             <artifactId>javax.inject</artifactId>
         </dependency>
 
+        <!-- SPRING TRANSACTIONS -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+
         <!-- VALIDATION -->
         <dependency>
             <groupId>javax.validation</groupId>

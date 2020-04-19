@@ -1,18 +1,17 @@
 package dev.akozel.cleaningtime.core.community.service;
 
 import com.googlecode.catchexception.apis.BDDCatchException;
+import dev.akozel.cleaningtime.core.common.context.UserContext;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
 import dev.akozel.cleaningtime.core.community.validation.CommunityValidator;
+import dev.akozel.cleaningtime.core.communitymember.service.CommunityMemberService;
 import dev.akozel.cleaningtime.core.validation.exception.ApplicationValidationException;
-import junitparams.JUnitParamsRunner;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static com.googlecode.catchexception.apis.BDDCatchException.when;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,22 +20,23 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.BDDMockito.willThrow;
 
-@RunWith(JUnitParamsRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class CommunityServiceImplTest {
 
-    private static final Community NULL_COMMUNITY = null;
     private static final Community VALID_COMMUNITY = Community.builder()
             .name("SOME_VALID_COMMUNITY_NAME")
             .build();
     private static final Long ANY_VALID_COMMUNITY_ID = 67543L;
-
-    @Rule
-    public MockitoRule rule = MockitoJUnit.rule();
+    private static final Long ANY_VALID_USER_ID = 46454L;
 
     @Mock
     private CommunityRepository communityRepository;
     @Mock
     private CommunityValidator communityValidator;
+    @Mock
+    private CommunityMemberService communityMemberService;
+    @Mock
+    private UserContext userContext;
     @InjectMocks
     private CommunityServiceImpl sut;
 
@@ -64,6 +64,21 @@ public class CommunityServiceImplTest {
         assertThat(actual)
                 .as("Returned ID is not equal to the desired")
                 .isEqualTo(ANY_VALID_COMMUNITY_ID);
+    }
+
+    @Test
+    public void should_create_owner_after_community_created() {
+        //given
+        given(communityRepository.save(isA(Community.class)))
+                .willReturn(ANY_VALID_COMMUNITY_ID);
+
+        //when
+        Long actual = sut.create(VALID_COMMUNITY);
+
+        //then
+        then(communityMemberService)
+                .should()
+                .createOwner(actual);
     }
 
     @Test
@@ -133,5 +148,21 @@ public class CommunityServiceImplTest {
                 .should()
                 .update(ANY_VALID_COMMUNITY_ID, anyCommunity);
     }
+
+    @Test
+    public void should_find_cummunities_by_user_in_the_context() {
+        //given
+        given(userContext.getUserId())
+                .willReturn(ANY_VALID_USER_ID);
+
+        //when
+        sut.findByUser();
+
+        //then
+        then(communityRepository)
+                .should()
+                .find(ANY_VALID_USER_ID);
+    }
+
 
 }

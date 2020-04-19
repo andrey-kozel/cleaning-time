@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static dev.akozel.cleaningtime.repository.postgres.tables.Communities.COMMUNITIES;
-import static dev.akozel.cleaningtime.repository.postgres.tables.CommunitiesMember.COMMUNITIES_MEMBER;
+import static dev.akozel.cleaningtime.repository.postgres.tables.CommunityMembers.COMMUNITY_MEMBERS;
 
 /**
  * PostgresCommunityRepository. Saves communities
@@ -26,8 +26,8 @@ import static dev.akozel.cleaningtime.repository.postgres.tables.CommunitiesMemb
 @Named
 public class PostgresCommunityRepository implements CommunityRepository {
 
-    private DSLContext context;
-    private CommunityRecordConverter converter;
+    private final DSLContext context;
+    private final CommunityRecordConverter converter;
 
     @Inject
     public PostgresCommunityRepository(DSLContext context,
@@ -75,9 +75,9 @@ public class PostgresCommunityRepository implements CommunityRepository {
     private List<Community> findItems(Long userId) {
         return context
                 .selectFrom(COMMUNITIES
-                        .join(COMMUNITIES_MEMBER)
-                        .onKey(COMMUNITIES_MEMBER.COMMUNITY_ID))
-                .where(COMMUNITIES_MEMBER.APPLICATION_USER_ID.eq(userId))
+                        .join(COMMUNITY_MEMBERS)
+                        .onKey(COMMUNITY_MEMBERS.COMMUNITY_ID))
+                .where(COMMUNITY_MEMBERS.APPLICATION_USER_ID.eq(userId))
                 .fetchInto(COMMUNITIES)
                 .stream()
                 .map(converter::unconvert)
@@ -88,9 +88,9 @@ public class PostgresCommunityRepository implements CommunityRepository {
         return context
                 .selectCount()
                 .from(COMMUNITIES)
-                .join(COMMUNITIES_MEMBER)
-                .on(COMMUNITIES.ID.eq(COMMUNITIES_MEMBER.COMMUNITY_ID))
-                .where(COMMUNITIES_MEMBER.APPLICATION_USER_ID.eq(userId))
+                .join(COMMUNITY_MEMBERS)
+                .on(COMMUNITIES.ID.eq(COMMUNITY_MEMBERS.COMMUNITY_ID))
+                .where(COMMUNITY_MEMBERS.APPLICATION_USER_ID.eq(userId))
                 .fetchOne(0, Long.class);
     }
 

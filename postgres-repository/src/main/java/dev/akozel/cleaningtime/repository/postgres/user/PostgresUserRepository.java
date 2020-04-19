@@ -20,8 +20,8 @@ import javax.inject.Named;
 @Named
 public class PostgresUserRepository implements ApplicationUserRepository {
 
-    private DSLContext context;
-    private UserRecordConverter converter;
+    private final DSLContext context;
+    private final UserRecordConverter converter;
 
     @Inject
     public PostgresUserRepository(DSLContext context,

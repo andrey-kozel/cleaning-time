@@ -2,6 +2,7 @@ package dev.akozel.cleaningtime.core.community.service;
 
 import dev.akozel.cleaningtime.core.common.model.PaginatedItems;
 import dev.akozel.cleaningtime.core.community.domain.Community;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * CommunityService.
@@ -14,6 +15,7 @@ public interface CommunityService {
 
     Community get(Long id);
 
+    @Transactional
     Long create(Community community);
 
     Community update(Long id, Community community);
