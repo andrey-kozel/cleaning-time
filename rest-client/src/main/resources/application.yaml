@@ -14,3 +14,7 @@ cleaning:
       username:
       password:
       dialect: POSTGRES
+
+spring:
+  flyway:
+    enabled: false

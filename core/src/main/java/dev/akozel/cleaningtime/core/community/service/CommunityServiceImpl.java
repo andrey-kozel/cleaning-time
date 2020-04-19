@@ -5,6 +5,7 @@ import dev.akozel.cleaningtime.core.common.model.PaginatedItems;
 import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
 import dev.akozel.cleaningtime.core.community.validation.CommunityValidator;
+import dev.akozel.cleaningtime.core.communitymember.service.CommunityMemberService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,16 +20,20 @@ import javax.inject.Named;
 @Named
 public class CommunityServiceImpl implements CommunityService {
 
-    private CommunityRepository communityRepository;
-    private CommunityValidator communityValidator;
-    private UserContext userContext;
+    private final CommunityRepository communityRepository;
+    private final CommunityValidator communityValidator;
+
+    private final CommunityMemberService communityMemberService;
+    private final UserContext userContext;
 
     @Inject
     public CommunityServiceImpl(CommunityRepository communityRepository,
                                 CommunityValidator communityValidator,
+                                CommunityMemberService communityMemberService,
                                 UserContext userContext) {
         this.communityRepository = communityRepository;
         this.communityValidator = communityValidator;
+        this.communityMemberService = communityMemberService;
         this.userContext = userContext;
     }
 
@@ -47,7 +52,9 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public Long create(Community community) {
         communityValidator.validateCreate(community);
-        return communityRepository.save(community);
+        Long communityId = communityRepository.save(community);
+        communityMemberService.createOwner(communityId);
+        return communityId;
     }
 
     @Override

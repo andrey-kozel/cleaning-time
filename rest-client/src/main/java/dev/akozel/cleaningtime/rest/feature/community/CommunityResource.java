@@ -68,7 +68,7 @@ public class CommunityResource {
 
     @ApiOperation(value = "Save new community", response = IdResponseDto.class)
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<IdResponseDto> save(@RequestBody CommunityDto dto) {
+    public ResponseEntity<IdResponseDto> create(@RequestBody CommunityDto dto) {
         Community community = communityMapper.fromContract(dto);
         Long communityId = communityService.create(community);
         IdResponseDto idResponse = communityMapper.toContract(communityId);

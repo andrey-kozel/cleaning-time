@@ -8,6 +8,9 @@ run-postgres:
 stop-postgres:
 	@bash ./postgres-repository/scripts/stop_postgres.sh
 
+migrate-postgres:
+	@bash ./postgres-repository/scripts/migrate_postgres.sh
+
 package:
 	@mvn clean package
 
