@@ -10,6 +10,8 @@ import static dev.akozel.cleaningtime.core.helper.ConstraintViolationAssert.asse
 
 public class CommunityMemberTest {
 
+    private static final String NULL_VALUE = null;
+    private static final Integer FIRST_ITEM = 0;
     private static final Long ANY_VALID_ID = 1L;
     private static final CommunityMemberType ANY_VALID_TYPE = CommunityMemberType.OWNER;
 
@@ -27,7 +29,7 @@ public class CommunityMemberTest {
 
         assertThat(violations)
                 .hasViolationSize(1)
-                .hasWrongValueAtIndex(0, null);
+                .hasWrongValueAtIndex(FIRST_ITEM, NULL_VALUE);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class CommunityMemberTest {
 
         assertThat(violations)
                 .hasViolationSize(1)
-                .hasWrongValueAtIndex(0, null);
+                .hasWrongValueAtIndex(FIRST_ITEM, NULL_VALUE);
     }
 
     @Test
@@ -57,7 +59,7 @@ public class CommunityMemberTest {
 
         assertThat(violations)
                 .hasViolationSize(1)
-                .hasWrongValueAtIndex(0, null);
+                .hasWrongValueAtIndex(FIRST_ITEM, NULL_VALUE);
     }
 
     @Test
