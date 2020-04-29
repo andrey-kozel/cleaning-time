@@ -13,4 +13,5 @@ public interface CommunityMemberService {
 
     Long createMember(Long communityId, Long userId);
 
+    void deleteByCommunityId(Long communityId);
 }

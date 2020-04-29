@@ -150,7 +150,7 @@ public class CommunityServiceImplTest {
     }
 
     @Test
-    public void should_find_cummunities_by_user_in_the_context() {
+    public void should_find_communities_by_user_in_the_context() {
         //given
         given(userContext.getUserId())
                 .willReturn(ANY_VALID_USER_ID);
@@ -164,5 +164,36 @@ public class CommunityServiceImplTest {
                 .find(ANY_VALID_USER_ID);
     }
 
+    @Test
+    public void should_validate_id_before_delete() {
+        //when
+        sut.delete(ANY_VALID_COMMUNITY_ID);
 
+        //then
+        then(communityValidator)
+                .should()
+                .validateDelete(ANY_VALID_COMMUNITY_ID);
+    }
+
+    @Test
+    public void should_delete_community_members() {
+        //when
+        sut.delete(ANY_VALID_COMMUNITY_ID);
+
+        //then
+        then(communityMemberService)
+                .should()
+                .deleteByCommunityId(ANY_VALID_COMMUNITY_ID);
+    }
+
+    @Test
+    public void should_delete_community_by_id() {
+        //when
+        sut.delete(ANY_VALID_COMMUNITY_ID);
+
+        //then
+        then(communityRepository)
+                .should()
+                .delete(ANY_VALID_COMMUNITY_ID);
+    }
 }

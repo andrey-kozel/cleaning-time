@@ -2,14 +2,15 @@ import React, {Fragment} from 'react'
 import {CssBaseline} from "@material-ui/core";
 import {Route, Switch} from 'react-router-dom'
 
-import PrivateRoute from "../common/components/private-route";
+import PrivateRoute from "../common/components/auth/components/private-route";
 
 import TokenRefresher from '../features/components/token-refresher'
 import LoginPage from "../features/components/login-page";
 import RegistrationPage from "../features/components/registration-page";
 import HomePage from '../features/components/home-page'
 import AppHeader from "../common/components/ui/header/AppHeaderContainer";
-import Communities from "../features/components/communities/CommunitiesContainer";
+import Communities from "../features/components/communities/list/CommunitiesContainer";
+import EditCommunity from "../features/components/communities/edit/EditCommunityContainer";
 import Reports from "../features/components/reports/Reports";
 import IndexPage from "../features/components/index-page";
 
@@ -33,6 +34,9 @@ const App = () => {
                               exact/>
                 <PrivateRoute path="/communities"
                               component={Communities}
+                              exact/>
+                <PrivateRoute path="/community/:id?"
+                              component={EditCommunity}
                               exact/>
                 <PrivateRoute path="/reports"
                               component={Reports}

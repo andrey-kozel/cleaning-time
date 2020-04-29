@@ -44,4 +44,9 @@ public class CommunityMemberServiceImpl implements CommunityMemberService {
         communityMemberValidator.validateCreate(member);
         return communityMemberRepository.save(member);
     }
+
+    @Override
+    public void deleteByCommunityId(Long communityId) {
+        communityMemberRepository.deleteByCommunityId(communityId);
+    }
 }

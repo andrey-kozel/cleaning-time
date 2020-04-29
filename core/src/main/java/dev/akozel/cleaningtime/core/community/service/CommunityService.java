@@ -22,4 +22,7 @@ public interface CommunityService {
 
     PaginatedItems<Community> findByUser();
 
+    @Transactional
+    void delete(Long id);
+
 }

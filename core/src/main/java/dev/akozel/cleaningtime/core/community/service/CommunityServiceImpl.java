@@ -62,4 +62,12 @@ public class CommunityServiceImpl implements CommunityService {
         communityValidator.validateUpdate(communityId, community);
         return communityRepository.update(communityId, community);
     }
+
+    @Override
+    public void delete(Long id) {
+        communityValidator.validateDelete(id);
+        communityMemberService.deleteByCommunityId(id);
+        communityRepository.delete(id);
+    }
+
 }
