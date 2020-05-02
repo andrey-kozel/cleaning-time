@@ -17,4 +17,5 @@ public interface CommunityValidator {
 
     void validateUpdate(Long communityId, Community community);
 
+    void validateDelete(Long id);
 }

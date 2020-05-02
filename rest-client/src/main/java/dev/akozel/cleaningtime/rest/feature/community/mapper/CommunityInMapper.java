@@ -2,7 +2,7 @@ package dev.akozel.cleaningtime.rest.feature.community.mapper;
 
 import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.rest.common.mapper.BaseMapper;
-import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityDto;
+import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityInDto;
 import org.mapstruct.Mapper;
 
 /**
@@ -13,6 +13,6 @@ import org.mapstruct.Mapper;
  * @author Andrey Kozel
  */
 @Mapper
-public interface CommunityMapper extends BaseMapper<Community, CommunityDto> {
+public interface CommunityInMapper extends BaseMapper<Community, CommunityInDto> {
 
 }

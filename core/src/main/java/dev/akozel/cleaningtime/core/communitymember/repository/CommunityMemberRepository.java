@@ -13,4 +13,5 @@ public interface CommunityMemberRepository {
 
     Long save(CommunityMember member);
 
+    void deleteByCommunityId(Long communityId);
 }

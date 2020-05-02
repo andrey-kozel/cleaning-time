@@ -18,4 +18,6 @@ public interface CommunityRepository extends EntityRepository<Community> {
     Community update(Long id, Community community);
 
     PaginatedItems<Community> find(Long userId);
+
+    void delete(Long id);
 }

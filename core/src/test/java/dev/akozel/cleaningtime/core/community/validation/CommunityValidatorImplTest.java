@@ -47,5 +47,16 @@ public class CommunityValidatorImplTest {
                 .raiseError(isA(String.class), isA(String.class), isNull());
     }
 
+    @Test
+    public void should_raise_error_when_community_id_is_null_when_delete_called() {
+        //when
+        sut.validateDelete(NULL_COMMUNITY_ID);
+
+        //then
+        then(rulesValidator)
+                .should()
+                .raiseError(isA(String.class), isA(String.class), isNull());
+    }
+
 
 }

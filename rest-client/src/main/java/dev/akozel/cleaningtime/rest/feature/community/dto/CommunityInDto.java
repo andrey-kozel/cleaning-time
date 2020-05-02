@@ -13,7 +13,7 @@ import javax.validation.constraints.NotEmpty;
  * @author Andrey Kozel
  */
 @Data
-public class CommunityDto {
+public class CommunityInDto {
 
     @NotEmpty
     @JsonProperty("name")

@@ -30,4 +30,11 @@ public class PostgresCommunityMemberRepository implements CommunityMemberReposit
                 .fetchOne();
         return savedRecord.getId();
     }
+
+    @Override
+    public void deleteByCommunityId(Long communityId) {
+        context.deleteFrom(COMMUNITY_MEMBERS)
+                .where(COMMUNITY_MEMBERS.COMMUNITY_ID.eq(communityId))
+                .execute();
+    }
 }

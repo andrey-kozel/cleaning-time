@@ -7,8 +7,10 @@ import dev.akozel.cleaningtime.core.community.service.CommunityService;
 import dev.akozel.cleaningtime.rest.common.dto.IdResponseDto;
 import dev.akozel.cleaningtime.rest.common.dto.PaginatedItemsDto;
 import dev.akozel.cleaningtime.rest.common.validation.entityexists.EntityExists;
-import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityDto;
-import dev.akozel.cleaningtime.rest.feature.community.mapper.CommunityMapper;
+import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityInDto;
+import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityOutDto;
+import dev.akozel.cleaningtime.rest.feature.community.mapper.CommunityInMapper;
+import dev.akozel.cleaningtime.rest.feature.community.mapper.CommunityOutMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,30 +39,33 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommunityResource {
 
     private final CommunityService communityService;
-    private final CommunityMapper communityMapper;
+    private final CommunityInMapper communityInMapper;
+    private final CommunityOutMapper communityOutMapper;
 
     @Autowired
     public CommunityResource(CommunityService communityService,
-                             CommunityMapper communityMapper) {
+                             CommunityInMapper communityInMapper,
+                             CommunityOutMapper communityOutMapper) {
         this.communityService = communityService;
-        this.communityMapper = communityMapper;
+        this.communityInMapper = communityInMapper;
+        this.communityOutMapper = communityOutMapper;
     }
 
-    @ApiOperation(value = "Get particular community by its ID", response = CommunityDto.class)
+    @ApiOperation(value = "Get particular community by its ID", response = CommunityInDto.class)
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
-    public ResponseEntity<PaginatedItemsDto<CommunityDto>> find() {
+    public ResponseEntity<PaginatedItemsDto<CommunityOutDto>> find() {
         PaginatedItems<Community> communities = communityService.findByUser();
-        PaginatedItemsDto<CommunityDto> dtos = communityMapper.toContract(communities);
+        PaginatedItemsDto<CommunityOutDto> dtos = communityOutMapper.toContract(communities);
         return ResponseEntity
                 .ok(dtos);
     }
 
-    @ApiOperation(value = "Get particular community by its ID", response = CommunityDto.class)
+    @ApiOperation(value = "Get particular community by its ID", response = CommunityInDto.class)
     @RequestMapping(method = RequestMethod.GET, path = "{id}", consumes = MediaType.ALL_VALUE)
-    public ResponseEntity<CommunityDto> get(@EntityExists(repository = CommunityRepository.class)
-                                            @PathVariable("id") Long id) {
+    public ResponseEntity<CommunityOutDto> get(@EntityExists(repository = CommunityRepository.class)
+                                               @PathVariable("id") Long id) {
         Community community = communityService.get(id);
-        CommunityDto dto = communityMapper.toContract(community);
+        CommunityOutDto dto = communityOutMapper.toContract(community);
         return ResponseEntity
                 .ok(dto);
 
@@ -68,25 +73,32 @@ public class CommunityResource {
 
     @ApiOperation(value = "Save new community", response = IdResponseDto.class)
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<IdResponseDto> create(@RequestBody CommunityDto dto) {
-        Community community = communityMapper.fromContract(dto);
+    public ResponseEntity<IdResponseDto> create(@RequestBody CommunityInDto dto) {
+        Community community = communityInMapper.fromContract(dto);
         Long communityId = communityService.create(community);
-        IdResponseDto idResponse = communityMapper.toContract(communityId);
+        IdResponseDto idResponse = communityInMapper.toContract(communityId);
         return ResponseEntity
                 .ok(idResponse);
     }
 
-    @ApiOperation(value = "Update existing community", response = CommunityDto.class)
+    @ApiOperation(value = "Update existing community", response = CommunityInDto.class)
     @RequestMapping(method = RequestMethod.PUT, path = "{id}")
-    public ResponseEntity<CommunityDto> update(@EntityExists(repository = CommunityRepository.class)
-                                               @PathVariable("id") Long id,
-                                               @RequestBody CommunityDto dto) {
-        Community community = communityMapper.fromContract(dto);
+    public ResponseEntity<CommunityInDto> update(@EntityExists(repository = CommunityRepository.class)
+                                                 @PathVariable("id") Long id,
+                                                 @RequestBody CommunityInDto dto) {
+        Community community = communityInMapper.fromContract(dto);
         Community updatedCommunity = communityService.update(id, community);
-        CommunityDto updatedCommunityDto = communityMapper.toContract(updatedCommunity);
+        CommunityInDto updatedCommunityDto = communityInMapper.toContract(updatedCommunity);
         return ResponseEntity
                 .ok(updatedCommunityDto);
 
+    }
+
+    @ApiOperation(value = "Delete existing community")
+    @RequestMapping(method = RequestMethod.DELETE, path = "{id}", consumes = MediaType.ALL_VALUE)
+    public void delete(@EntityExists(repository = CommunityRepository.class)
+                       @PathVariable("id") Long id) {
+        communityService.delete(id);
     }
 
 }

@@ -25,4 +25,20 @@ export default class CleaningTimeService {
         return axios.get('communities');
     }
 
+    getCommunity(communityId) {
+        return axios.get(`communities/${communityId}`);
+    }
+
+    saveCommunity(community) {
+        return axios.post('communities', community);
+    }
+
+    updateCommunity(id, community) {
+        return axios.put(`communities/${id}`, community);
+    }
+
+    deleteCommunity(id) {
+        return axios.delete(`communities/${id}`);
+    }
+
 }

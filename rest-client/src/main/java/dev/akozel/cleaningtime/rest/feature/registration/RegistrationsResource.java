@@ -2,7 +2,7 @@ package dev.akozel.cleaningtime.rest.feature.registration;
 
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.rest.feature.auth.service.AuthenticationService;
-import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityDto;
+import dev.akozel.cleaningtime.rest.feature.community.dto.CommunityInDto;
 import dev.akozel.cleaningtime.rest.feature.registration.dto.RegistrationDto;
 import dev.akozel.cleaningtime.rest.feature.registration.mapper.RegistrationMapper;
 import io.swagger.annotations.Api;
@@ -41,7 +41,7 @@ public class RegistrationsResource {
         this.registrationMapper = registrationMapper;
     }
 
-    @ApiOperation(value = "Register new user", response = CommunityDto.class)
+    @ApiOperation(value = "Register new user", response = CommunityInDto.class)
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody RegistrationDto dto) {
         ApplicationUser user = registrationMapper.fromContract(dto);

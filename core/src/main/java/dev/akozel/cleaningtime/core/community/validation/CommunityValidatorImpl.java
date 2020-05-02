@@ -16,7 +16,7 @@ import javax.inject.Named;
 @Named
 public class CommunityValidatorImpl implements CommunityValidator {
 
-    private RulesValidator rulesValidator;
+    private final RulesValidator rulesValidator;
 
     @Inject
     public CommunityValidatorImpl(RulesValidator rulesValidator) {
@@ -25,9 +25,7 @@ public class CommunityValidatorImpl implements CommunityValidator {
 
     @Override
     public void validateGet(Long communityId) {
-        if (communityId == null) {
-            rulesValidator.raiseError("Community id should be present", "communityId", null);
-        }
+        validCommunityId(communityId);
     }
 
     @Override
@@ -37,9 +35,19 @@ public class CommunityValidatorImpl implements CommunityValidator {
 
     @Override
     public void validateUpdate(Long communityId, Community community) {
+        validCommunityId(communityId);
+        rulesValidator.validate(community);
+    }
+
+    @Override
+    public void validateDelete(Long communityId) {
+        validCommunityId(communityId);
+    }
+
+    private void validCommunityId(Long communityId) {
         if (communityId == null) {
             rulesValidator.raiseError("Community id should be present", "communityId", null);
         }
-        rulesValidator.validate(community);
     }
+
 }
