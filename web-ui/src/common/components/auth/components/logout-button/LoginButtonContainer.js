@@ -5,10 +5,8 @@ import {withRouter} from 'react-router-dom'
 import LogoutButton from "./LogoutButton";
 import {performLogout} from "../../ducks";
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        performLogout: performLogout(dispatch)
-    }
+const mapDispatchToProps = {
+    performLogout
 };
 
 export default compose(

@@ -1,8 +1,6 @@
 import {connect} from 'react-redux';
 import {compose} from "redux";
-
-import {withCleaningTimeService} from "../../../../common/components/hoc";
-import {getCommunities, deleteCommunity} from "./duck";
+import {deleteCommunity, getCommunities} from "./ducks";
 import Communities from "./Communities";
 
 const mapStateToProps = (state) => {
@@ -13,14 +11,11 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch, {cleaningTimeService}) => {
-    return {
-        getCommunities: getCommunities(cleaningTimeService, dispatch),
-        deleteCommunity: deleteCommunity(cleaningTimeService, dispatch)
-    }
+const mapDispatchToProps = {
+    getCommunities,
+    deleteCommunity
 };
 
 export default compose(
-    withCleaningTimeService(),
     connect(mapStateToProps, mapDispatchToProps),
 )(Communities);

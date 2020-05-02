@@ -5,7 +5,6 @@ import {compose} from "redux";
 
 import Registration from "./Registration";
 import {performRegistration} from "./ducks";
-import {withCleaningTimeService} from "../../../common/components/hoc";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -37,14 +36,11 @@ const loginFormSettings = {
     displayName: 'RegistrationForm',
 };
 
-const mapDispatchToProps = (dispatch, {cleaningTimeService}) => {
-    return {
-        performRegistration: performRegistration(cleaningTimeService, dispatch)
-    }
+const mapDispatchToProps = {
+    performRegistration
 };
 
 export default compose(
-    withCleaningTimeService(),
     connect(null, mapDispatchToProps),
     withFormik(loginFormSettings),
 )(Registration);

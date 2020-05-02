@@ -1,8 +1,6 @@
 import {connect} from 'react-redux';
 import {compose} from "redux";
-
-import {withCleaningTimeService} from "../../../../common/components/hoc";
-import {getCommunity, saveCommunity, updateCommunity} from "./duck";
+import {getCommunity, saveCommunity, updateCommunity} from "./ducks";
 import EditCommunity from './EditCommunity'
 import * as Yup from "yup";
 import {withFormik} from "formik";
@@ -40,16 +38,13 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch, {cleaningTimeService}) => {
-    return {
-        getCommunity: getCommunity(cleaningTimeService, dispatch),
-        saveCommunity: saveCommunity(cleaningTimeService, dispatch),
-        updateCommunity: updateCommunity(cleaningTimeService, dispatch),
-    }
+const mapDispatchToProps = {
+    getCommunity,
+    saveCommunity,
+    updateCommunity
 };
 
 export default compose(
-    withCleaningTimeService(),
     connect(mapStateToProps, mapDispatchToProps),
     withFormik(communitySettings),
 )(EditCommunity);
