@@ -1,7 +1,6 @@
-import {applyMiddleware, createStore} from 'redux'
-
+import {configureStore, getDefaultMiddleware} from "@reduxjs/toolkit";
 import reducer from './reducer'
-import {saveToken, cleanUpToken} from "../common/utils/token";
+import {cleanUpToken, saveToken} from "../common/utils/token";
 
 import {LOGIN_SUCCESS, LOGOUT} from "../common/components/auth/ducks";
 import {REFRESH_SUCCESS} from "../features/components/token-refresher/ducks";
@@ -22,6 +21,9 @@ const saveTokenMiddleware = () => (dispatch) => (action) => {
     }
 };
 
-const store = createStore(reducer, applyMiddleware(saveTokenMiddleware));
+const store = configureStore({
+    reducer,
+    middleware: [...getDefaultMiddleware(), saveTokenMiddleware]
+});
 
 export default store;

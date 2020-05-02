@@ -1,92 +1,58 @@
-import {createReducer} from 'redux-create-reducer';
+import {createSlice} from "@reduxjs/toolkit";
+
 import {getAccessToken} from "../../utils/token";
+import cleaningTimeService from "../../services/cleaning-time-service";
 
-const LOGIN_REQUEST = "cleaningTime/login/LOGIN_REQUEST";
-const LOGIN_SUCCESS = "cleaningTime/login/LOGIN_SUCCESS";
-const LOGIN_FAILED = "cleaningTime/login/LOGIN_FAILED";
-const LOGOUT = "cleaningTime/header/logout/LOGOUT";
-
-const loginUser = () => {
-    return {
-        type: LOGIN_REQUEST,
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: {
+        loginInProgress: false,
+        loginSuccessful: null,
+        accessToken: getAccessToken()
+    },
+    reducers: {
+        loginRequested: (state) => {
+            state.loginInProgress = true;
+            state.loginSuccessful = null;
+            state.accessToken = null;
+        },
+        loginSucceed: (state, action) => {
+            state.loginInProgress = false;
+            state.loginSuccessful = true;
+            state.accessToken = action.payload;
+        },
+        loginFailed: (state) => {
+            state.loginInProgress = false;
+            state.loginSuccessful = false;
+            state.accessToken = null;
+        },
+        logout: (state) => {
+            state.loginInProgress = false;
+            state.loginSuccessful = null;
+            state.accessToken = null;
+        }
     }
-};
+})
 
-const loginUserSuccess = (token) => {
-    return {
-        type: LOGIN_SUCCESS,
-        payload: token
-    }
-};
-
-const loginUserFailed = (response) => {
-    return {
-        type: LOGIN_FAILED,
-        payload: response
-    }
-};
-
-const logout = () => {
-    return {
-        type: LOGOUT
-    }
-};
-
-const performLogin = (cleaningTimeService, dispatch) => (credentials, history) => {
-    dispatch(loginUser());
+const performLogin = (credentials, history) => dispatch => {
+    dispatch(authSlice.actions.loginRequested());
     cleaningTimeService.loginUser(credentials)
-        .then(response => dispatch(loginUserSuccess(response.data)))
+        .then(response => dispatch(authSlice.actions.loginSucceed(response.data)))
         .then(() => history.push("/home"))
-        .catch(error => dispatch(loginUserFailed(error.response)));
+        .catch(error => dispatch(authSlice.actions.loginFailed(error.response)));
 };
 
-const performLogout = (dispatch) => (history) => {
-    dispatch(logout());
+const performLogout = (history) => dispatch => {
+    dispatch(authSlice.actions.logout());
     history.push("/login")
 };
 
-const initialState = {
-    loginInProgress: false,
-    loginSuccessful: null,
-    accessToken: getAccessToken()
-};
-
-const setLoginRequested = () => ({
-    loginInProgress: true,
-    loginSuccessful: null,
-    accessToken: null
-});
-
-const setLoginSucceed = (state, action) => ({
-    loginInProgress: false,
-    loginSuccessful: true,
-    accessToken: action.payload
-});
-
-const setLoginFailed = () => ({
-    loginInProgress: false,
-    loginSuccessful: false,
-    accessToken: null
-});
-
-const setLogoutRequested = () => ({
-    loginInProgress: false,
-    loginSuccessful: null,
-    accessToken: null
-});
-
-const loginReducer = createReducer(initialState, {
-    [LOGIN_REQUEST]: setLoginRequested,
-    [LOGIN_SUCCESS]: setLoginSucceed,
-    [LOGIN_FAILED]: setLoginFailed,
-    [LOGOUT]: setLogoutRequested
-});
-
 export {
-    LOGIN_SUCCESS,
-    LOGOUT,
     performLogin,
     performLogout
 };
 
-export default loginReducer;
+export const LOGIN_SUCCESS = authSlice.actions.loginSucceed.type;
+export const LOGOUT = authSlice.actions.logout.type;
+
+export default authSlice.reducer;

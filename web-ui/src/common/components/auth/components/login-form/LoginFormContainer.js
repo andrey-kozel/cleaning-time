@@ -1,7 +1,6 @@
 import * as Yup from "yup";
 import {performLogin} from "../../ducks";
 import {compose} from "redux";
-import {withCleaningTimeService} from "../../../hoc";
 import {connect} from "react-redux";
 import {withFormik} from "formik";
 import LoginForm from "./LoginForm";
@@ -31,14 +30,11 @@ const loginFormSettings = {
     displayName: 'LoginForm',
 };
 
-const mapDispatchToProps = (dispatch, {cleaningTimeService}) => {
-    return {
-        performLogin: performLogin(cleaningTimeService, dispatch)
-    };
+const mapDispatchToProps = {
+    performLogin
 };
 
 export default compose(
-    withCleaningTimeService(),
     connect(null, mapDispatchToProps),
     withFormik(loginFormSettings),
 )(LoginForm);

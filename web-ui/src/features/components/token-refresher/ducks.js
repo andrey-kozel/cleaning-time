@@ -1,72 +1,44 @@
-import {createReducer} from 'redux-create-reducer';
+import {createSlice} from "@reduxjs/toolkit";
 import {getAccessToken, isExpiredInASeconds} from "../../../common/utils/token";
+import cleaningTimeService from '../../../common/services/cleaning-time-service';
 
-const REFRESH_REQUEST = "cleaningTime/token-refresh/REFRESH_REQUEST";
-const REFRESH_SUCCESS = "cleaningTime/token-refresh/REFRESH_SUCCESS";
-const REFRESH_FAILED = "cleaningTime/token-refresh/REFRESH_FAILED";
-
-const refreshToken = () => {
-    return {
-        type: REFRESH_REQUEST,
+const refreshSlice = createSlice({
+    name: 'refresh',
+    initialState: {
+        refreshInProgress: false,
+        refreshSuccessful: null
+    },
+    reducers: {
+        refreshTokenRequested: (state) => {
+            state.refreshInProgress = true;
+            state.refreshSuccessful = null;
+        },
+        refreshTokenSucceed: (state) => {
+            state.refreshInProgress = false;
+            state.refreshSuccessful = true;
+        },
+        refreshTokenFailed: (state) => {
+            state.refreshInProgress = false;
+            state.refreshSuccessful = false;
+        }
     }
-};
+})
 
-const refreshSuccess = (token) => {
-    return {
-        type: REFRESH_SUCCESS,
-        payload: token
+const performRefresh = () => dispatch => {
+    if (!isExpiredInASeconds(60)) {
+        return
     }
-};
-
-const refreshFailed = (response) => {
-    return {
-        type: REFRESH_FAILED,
-        payload: response
-    }
-};
-
-const performRefresh = (cleaningTimeService, dispatch) => () => {
-    dispatch(refreshToken());
+    dispatch(refreshSlice.actions.refreshTokenRequested());
     const accessToken = getAccessToken();
     cleaningTimeService.refreshToken(accessToken)
-        .then(response => dispatch(refreshSuccess(response.data)))
-        .catch(error => dispatch(refreshFailed(error.response)));
+        .then(response => dispatch(refreshSlice.actions.refreshTokenSucceed(response.data)))
+        .catch(() => dispatch(refreshSlice.actions.refreshTokenFailed()));
 };
-
-const isTokenAlmostExpired = () => {
-    return isExpiredInASeconds(60);
-};
-
-const initialState = {
-    refreshInProgress: false,
-    refreshSuccessful: null
-};
-
-const setRefreshRequested = () => ({
-    refreshInProgress: true,
-    refreshSuccessful: null
-});
-
-const setRefreshSucceed = () => ({
-    refreshInProgress: false,
-    refreshSuccessful: true
-});
-
-const setRefreshFailed = () => ({
-    refreshInProgress: false,
-    refreshSuccessful: false
-});
-
-const refreshReducer = createReducer(initialState, {
-    [REFRESH_REQUEST]: setRefreshRequested,
-    [REFRESH_SUCCESS]: setRefreshSucceed,
-    [REFRESH_FAILED]: setRefreshFailed
-});
 
 export {
-    REFRESH_SUCCESS,
-    performRefresh,
-    isTokenAlmostExpired
+    performRefresh
 };
 
-export default refreshReducer;
+export const REFRESH_SUCCESS = refreshSlice.actions.refreshTokenSucceed.type;
+
+export default refreshSlice.reducer;
