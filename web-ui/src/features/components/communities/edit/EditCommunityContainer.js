@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {compose} from "redux";
-import {getCommunity, saveCommunity, updateCommunity} from "./ducks";
+import {clearCommunity, getCommunity, saveCommunity, updateCommunity} from "./ducks";
 import EditCommunity from './EditCommunity'
 import * as Yup from "yup";
 import {withFormik} from "formik";
@@ -41,7 +41,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     getCommunity,
     saveCommunity,
-    updateCommunity
+    updateCommunity,
+    clearCommunity
 };
 
 export default compose(

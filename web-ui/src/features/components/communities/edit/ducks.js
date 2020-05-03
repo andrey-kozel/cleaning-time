@@ -1,5 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
+
 import cleaningTimeService from '../../../../common/services/cleaning-time-service';
+import {showSuccess, showError} from "../../../../common/components/notification/ducks";
 
 const editCommunitySlice = createSlice({
     name: 'editCommunity',
@@ -41,6 +43,9 @@ const editCommunitySlice = createSlice({
         getCommunityFailed: (state, action) => {
             state.loadingCommunity = false;
             state.loadingCommunityFailed = true;
+        },
+        clearCommunity: (state) => {
+            state.community.name = '';
         }
     }
 });
@@ -59,24 +64,37 @@ const saveCommunity = (community, history) => dispatch => {
     dispatch(saveCommunityRequested());
     cleaningTimeService.saveCommunity(community)
         .then(response => {
-            dispatch(saveCommunitySucceed(response.data))
-            history.push(`/community/${response.data.id}`)
+            dispatch(saveCommunitySucceed(response.data));
+            dispatch(showSuccess("Community saved successfully"));
+            history.push(`/community/${response.data.id}`);
         })
-        .catch(error => dispatch(saveCommunityFailed(error.response)));
+        .catch(error => {
+            dispatch(saveCommunityFailed(error.response));
+            dispatch(showError("Failed to save community"));
+        });
 };
 
 const updateCommunity = (id, community) => dispatch => {
     dispatch(updateCommunityRequested());
     cleaningTimeService.updateCommunity(id, community)
-        .then(response => dispatch(saveCommunitySucceed(response.data)))
-        .catch(error => dispatch(saveCommunityFailed(error.response)));
+        .then(response => {
+            dispatch(saveCommunitySucceed(response.data));
+            dispatch(showSuccess("Community updated successfully"));
+        })
+        .catch(error => {
+            dispatch(saveCommunityFailed(error.response));
+            dispatch(showError("Failed to update community"));
+        });
 }
 
 const getCommunity = (communityId) => dispatch => {
     dispatch(getCommunityRequested());
     cleaningTimeService.getCommunity(communityId)
         .then(response => dispatch(getCommunitySucceed(response.data)))
-        .catch(error => dispatch(getCommunityFailed(error.response)));
+        .catch(error => {
+            dispatch(getCommunityFailed(error.response));
+            dispatch(showError("Failed to get community"))
+        });
 };
 
 export {
@@ -84,5 +102,9 @@ export {
     saveCommunity,
     updateCommunity
 }
+
+export const {
+    clearCommunity
+} = editCommunitySlice.actions
 
 export default editCommunitySlice.reducer;
