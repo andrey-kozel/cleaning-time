@@ -1,7 +1,7 @@
 import React from 'react'
 import {AppBar, Grid, Toolbar, Typography} from '@material-ui/core'
-import LogoutButton from "../../auth/components/logout-button/LoginButtonContainer";
-import HeaderNavigation from "./navigation/HeaderNavigation";
+import LogoutButton from "../../../common/components/auth/components/logout-button/LoginButtonContainer";
+import HeaderNavigation from "./naigation/HeaderNavigation";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

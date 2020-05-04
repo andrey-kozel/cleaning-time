@@ -17,13 +17,12 @@ const useStyles = makeStyles((theme) => ({
 
 const EditCommunity = (props) => {
     const {id} = props.match.params;
-    const {getCommunity} = props;
+    const {getCommunity, clearCommunity} = props;
     const classes = useStyles();
     const {
         values,
         touched,
         errors,
-        dirty,
         handleChange,
         handleBlur,
         handleSubmit,
@@ -33,7 +32,8 @@ const EditCommunity = (props) => {
         if (id) {
             getCommunity(id)
         }
-    }, [id])
+        return () => clearCommunity();
+    }, [id, getCommunity, clearCommunity])
 
     return (
         <Grid container className={classes.mainContent} justify="center">

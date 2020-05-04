@@ -8,11 +8,12 @@ import TokenRefresher from '../features/components/token-refresher'
 import LoginPage from "../features/components/login-page";
 import RegistrationPage from "../features/components/registration-page";
 import HomePage from '../features/components/home-page'
-import AppHeader from "../common/components/ui/header/AppHeaderContainer";
+import AppHeader from "../features/components/header/AppHeaderContainer";
 import Communities from "../features/components/communities/list/CommunitiesContainer";
 import EditCommunity from "../features/components/communities/edit/EditCommunityContainer";
 import Reports from "../features/components/reports/Reports";
 import IndexPage from "../features/components/index-page";
+import NotificationBar from "../common/components/notification/NotificationBarContainer";
 
 const App = () => {
     return (
@@ -42,6 +43,7 @@ const App = () => {
                               component={Reports}
                               exact/>
             </Switch>
+            <NotificationBar/>
             <TokenRefresher/>
         </Fragment>
     )

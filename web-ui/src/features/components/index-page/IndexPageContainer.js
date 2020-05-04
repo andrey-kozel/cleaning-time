@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 
 import IndexPage from "./IndexPage";
-import {switchPage} from "../../../common/components/ui/header/navigation/ducks"
+import {switchPage} from "../header/naigation/ducks"
 
 const mapDispatchToProps = {
     switchPage

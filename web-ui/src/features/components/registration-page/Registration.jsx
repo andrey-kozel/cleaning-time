@@ -13,7 +13,7 @@ import {
 import {Link} from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {makeStyles} from "@material-ui/core/styles";
-import GuestTemplate from "../../../common/components/ui/guest/GuestTemplate";
+import GuestTemplate from "../../../common/components/guest/GuestTemplate";
 
 const useStyles = makeStyles(theme => ({
     registrationActions: {
