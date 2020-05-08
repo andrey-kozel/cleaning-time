@@ -88,6 +88,9 @@ const updateCommunity = (id, community) => dispatch => {
 }
 
 const getCommunity = (communityId) => dispatch => {
+    if (!communityId) {
+        return;
+    }
     dispatch(getCommunityRequested());
     cleaningTimeService.getCommunity(communityId)
         .then(response => dispatch(getCommunitySucceed(response.data)))

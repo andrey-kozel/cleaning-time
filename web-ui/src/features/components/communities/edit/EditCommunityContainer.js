@@ -14,7 +14,6 @@ const communitySettings = {
     mapPropsToValues: (props) => ({
         name: props.name
     }),
-
     handleSubmit: (values, {props}) => {
         const {id} = props.match.params;
 
@@ -23,7 +22,6 @@ const communitySettings = {
         } else {
             props.saveCommunity(values, props.history);
         }
-
     },
     enableReinitialize: true,
     validationSchema: validationSchema,
@@ -32,11 +30,9 @@ const communitySettings = {
     displayName: 'CommunityForm',
 };
 
-const mapStateToProps = (state) => {
-    return {
-        name: state.community.community.name
-    }
-};
+const mapStateToProps = (state) => ({
+    name: state.community.community.name
+});
 
 const mapDispatchToProps = {
     getCommunity,
