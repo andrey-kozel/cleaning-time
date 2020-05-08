@@ -1,15 +1,7 @@
 import React from 'react'
-import {
-    Avatar,
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    CardHeader,
-    Grid,
-    TextField,
-    Typography
-} from "@material-ui/core";
+import {Field, Form} from 'formik'
+import {TextField} from 'material-ui-formik-components/TextField'
+import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Grid, Typography} from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import {Link} from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles";
@@ -20,20 +12,11 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const LoginForm = (props) => {
+const LoginForm = ({values, dirty}) => {
     const classes = useStyles();
-    const {
-        values,
-        touched,
-        errors,
-        dirty,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-    } = props;
 
     return (
-        <form onSubmit={handleSubmit}>
+        <Form>
             <Card>
                 <CardHeader
                     avatar={
@@ -50,29 +33,22 @@ const LoginForm = (props) => {
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <TextField
+                            <Field
+                                component={TextField}
                                 fullWidth
-                                error={errors.email && touched.email}
                                 label="Email"
                                 name="email"
                                 value={values.email}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={(errors.email && touched.email) && errors.email}
                                 margin="normal"
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                fullWidth
+                            <Field
+                                component={TextField}
                                 type="password"
-                                error={errors.password && touched.password}
                                 label="Password"
                                 name="password"
                                 value={values.password}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={(errors.password && touched.password) && errors.password}
                                 margin="normal"
                             />
                         </Grid>
@@ -105,7 +81,7 @@ const LoginForm = (props) => {
                     </Grid>
                 </CardActions>
             </Card>
-        </form>
+        </Form>
     );
 };
 

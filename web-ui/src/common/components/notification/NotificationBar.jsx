@@ -7,7 +7,7 @@ const NotificationBar = ({message, severity, opened, hideNotification}) => {
         <Snackbar open={opened}
                   autoHideDuration={4000}
                   onClose={() => hideNotification()}
-                  TransitionComponent={(props) => <Slide {...props} direction="down"/>}
+                  TransitionComponent={(props) => <Slide {...props} direction="right"/>}
                   anchorOrigin={{
                       vertical: 'bottom',
                       horizontal: 'right'

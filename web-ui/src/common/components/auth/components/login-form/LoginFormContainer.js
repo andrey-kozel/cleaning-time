@@ -19,11 +19,9 @@ const loginFormSettings = {
         email: '',
         password: ''
     }),
-
     handleSubmit: (values, {props}) => {
         props.performLogin(values, props.history);
     },
-
     validationSchema: validationSchema,
     validateOnBlur: true,
     validateOnChange: false,

@@ -1,4 +1,6 @@
 import React from 'react';
+import {Field, Form} from 'formik'
+import {TextField} from 'material-ui-formik-components/TextField'
 import {
     Avatar,
     Button,
@@ -7,7 +9,6 @@ import {
     CardContent,
     CardHeader,
     Grid,
-    TextField,
     Typography
 } from '@material-ui/core';
 import {Link} from 'react-router-dom';
@@ -21,21 +22,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Registration = (props) => {
+const Registration = ({values, dirty}) => {
     const classes = useStyles();
-    const {
-        values,
-        touched,
-        errors,
-        dirty,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-    } = props;
 
     return (
         <GuestTemplate>
-            <form onSubmit={handleSubmit}>
+            <Form>
                 <Card>
                     <CardHeader
                         avatar={
@@ -52,43 +44,34 @@ const Registration = (props) => {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField
+                                <Field
+                                    component={TextField}
                                     fullWidth
-                                    error={errors.email && touched.email}
                                     label="Email"
                                     name="email"
                                     value={values.email}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    helperText={(errors.email && touched.email) && errors.email}
                                     margin="normal"
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
+                                <Field
+                                    component={TextField}
                                     fullWidth
                                     type="password"
-                                    error={errors.password && touched.password}
                                     label="Password"
                                     name="password"
                                     value={values.password}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    helperText={(errors.password && touched.password) && errors.password}
                                     margin="normal"
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
+                                <Field
+                                    component={TextField}
                                     fullWidth
                                     type="password"
-                                    error={errors.passwordConfirmation && touched.passwordConfirmation}
                                     label="Password confirmation"
                                     name="passwordConfirmation"
                                     value={values.passwordConfirmation}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    helperText={(errors.passwordConfirmation && touched.passwordConfirmation) && errors.passwordConfirmation}
                                     margin="normal"
                                 />
                             </Grid>
@@ -121,7 +104,7 @@ const Registration = (props) => {
                         </Grid>
                     </CardActions>
                 </Card>
-            </form>
+            </Form>
         </GuestTemplate>
     );
 };
