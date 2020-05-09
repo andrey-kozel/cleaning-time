@@ -1,9 +1,9 @@
 import * as Yup from "yup";
-import {performLogin} from "../../ducks";
+import {performLogin} from "../../../common/components/auth/ducks";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {withFormik} from "formik";
-import LoginForm from "./LoginForm";
+import Login from "./Login";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -35,4 +35,4 @@ const mapDispatchToProps = {
 export default compose(
     connect(null, mapDispatchToProps),
     withFormik(loginFormSettings),
-)(LoginForm);
+)(Login);
