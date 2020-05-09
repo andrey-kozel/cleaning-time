@@ -27,20 +27,22 @@ public class CommunityMemberServiceImpl implements CommunityMemberService {
 
     @Override
     public Long createOwner(Long communityId) {
-        CommunityMember owner = new CommunityMember();
-        owner.setCommunityId(communityId);
-        owner.setUserId(userContext.getUserId());
-        owner.setType(CommunityMemberType.OWNER);
+        CommunityMember owner = CommunityMember.builder()
+                .communityId(communityId)
+                .userId(userContext.getUserId())
+                .type(CommunityMemberType.OWNER)
+                .build();
         communityMemberValidator.validateCreate(owner);
         return communityMemberRepository.save(owner);
     }
 
     @Override
     public Long createMember(Long communityId, Long userId) {
-        CommunityMember member = new CommunityMember();
-        member.setCommunityId(communityId);
-        member.setUserId(userId);
-        member.setType(CommunityMemberType.MEMBER);
+        CommunityMember member = CommunityMember.builder()
+                .communityId(communityId)
+                .userId(userId)
+                .type(CommunityMemberType.MEMBER)
+                .build();
         communityMemberValidator.validateCreate(member);
         return communityMemberRepository.save(member);
     }

@@ -32,8 +32,8 @@ public class PostgresCommunityMemberRepository implements CommunityMemberReposit
     }
 
     @Override
-    public void deleteByCommunityId(Long communityId) {
-        context.deleteFrom(COMMUNITY_MEMBERS)
+    public int deleteByCommunityId(Long communityId) {
+        return context.deleteFrom(COMMUNITY_MEMBERS)
                 .where(COMMUNITY_MEMBERS.COMMUNITY_ID.eq(communityId))
                 .execute();
     }

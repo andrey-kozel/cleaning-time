@@ -24,6 +24,9 @@ public class CommunityRecordConverterImpl implements CommunityRecordConverter {
 
     @Override
     public Community unconvert(CommunitiesRecord updatedRecord) {
+        if (updatedRecord == null) {
+            return null;
+        }
         return Community.builder()
                 .id(updatedRecord.getId())
                 .name(updatedRecord.getName())

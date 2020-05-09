@@ -13,7 +13,9 @@ import static org.mockito.BDDMockito.then;
 @RunWith(MockitoJUnitRunner.class)
 public class CommunityMemberValidatorImplTest {
 
-    private static final CommunityMember ANY_COMMUNITY_MEMBER = new CommunityMember();
+    private static final CommunityMember ANY_COMMUNITY_MEMBER = CommunityMember
+            .builder()
+            .build();
 
     @Mock
     private RulesValidator rulesValidator;

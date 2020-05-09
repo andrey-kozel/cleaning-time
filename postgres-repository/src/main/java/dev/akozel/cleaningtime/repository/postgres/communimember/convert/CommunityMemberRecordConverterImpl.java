@@ -20,11 +20,11 @@ public class CommunityMemberRecordConverterImpl implements CommunityMemberRecord
 
     @Override
     public CommunityMember convert(CommunityMembersRecord source) {
-        CommunityMember target = new CommunityMember();
-        target.setCommunityId(source.getCommunityId());
-        target.setType(CommunityMemberType.valueOf(source.getType()));
-        target.setUserId(source.getApplicationUserId());
-        return target;
+        return CommunityMember.builder()
+                .communityId(source.getCommunityId())
+                .userId(source.getApplicationUserId())
+                .type(CommunityMemberType.valueOf(source.getType()))
+                .build();
     }
 
 }

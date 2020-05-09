@@ -1,9 +1,9 @@
 CREATE TABLE users
 (
 
-    id       BIGSERIAL NOT NULL PRIMARY KEY,
-    email    TEXT UNIQUE DEFAULT NULL,
-    password TEXT        DEFAULT NULL
+    id       BIGSERIAL   NOT NULL PRIMARY KEY,
+    email    TEXT UNIQUE NOT NULL,
+    password TEXT        NOT NULL
 
 );
 
@@ -18,9 +18,9 @@ CREATE TABLE communities
 CREATE TABLE community_members
 (
 
-    id       BIGSERIAL NOT NULL PRIMARY KEY,
-    application_user_id BIGINT NOT NULL,
-    community_id        BIGINT NOT NULL,
+    id                  BIGSERIAL NOT NULL PRIMARY KEY,
+    application_user_id BIGINT    NOT NULL,
+    community_id        BIGINT    NOT NULL,
     type                TEXT CHECK ( type IN ('OWNER', 'MEMBER') ),
 
     UNIQUE (application_user_id, community_id),
