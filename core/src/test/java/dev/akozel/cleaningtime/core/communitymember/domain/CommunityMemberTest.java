@@ -20,9 +20,10 @@ public class CommunityMemberTest {
     @Test
     public void Should_return_violations_when_user_id_is_null() {
         //given
-        CommunityMember memberWithNullUser = new CommunityMember();
-        memberWithNullUser.setCommunityId(ANY_VALID_ID);
-        memberWithNullUser.setType(ANY_VALID_TYPE);
+        CommunityMember memberWithNullUser = CommunityMember.builder()
+                .communityId(ANY_VALID_ID)
+                .type(ANY_VALID_TYPE)
+                .build();
 
         //when
         Set<ConstraintViolation<CommunityMember>> violations = validationHelper.validate(memberWithNullUser);
@@ -35,9 +36,10 @@ public class CommunityMemberTest {
     @Test
     public void Should_return_violations_when_community_id_is_null() {
         //given
-        CommunityMember memberWithNullCommunity = new CommunityMember();
-        memberWithNullCommunity.setUserId(ANY_VALID_ID);
-        memberWithNullCommunity.setType(ANY_VALID_TYPE);
+        CommunityMember memberWithNullCommunity = CommunityMember.builder()
+                .userId(ANY_VALID_ID)
+                .type(ANY_VALID_TYPE)
+                .build();
 
         //when
         Set<ConstraintViolation<CommunityMember>> violations = validationHelper.validate(memberWithNullCommunity);
@@ -50,9 +52,10 @@ public class CommunityMemberTest {
     @Test
     public void Should_return_violations_when_type_is_null() {
         //given
-        CommunityMember memberWithNullType = new CommunityMember();
-        memberWithNullType.setUserId(ANY_VALID_ID);
-        memberWithNullType.setCommunityId(ANY_VALID_ID);
+        CommunityMember memberWithNullType = CommunityMember.builder()
+                .userId(ANY_VALID_ID)
+                .communityId(ANY_VALID_ID)
+                .build();
 
         //when
         Set<ConstraintViolation<CommunityMember>> violations = validationHelper.validate(memberWithNullType);
@@ -65,10 +68,11 @@ public class CommunityMemberTest {
     @Test
     public void Should_not_return_violations_when_all_fields_have_values() {
         //given
-        CommunityMember memberWithNullType = new CommunityMember();
-        memberWithNullType.setUserId(ANY_VALID_ID);
-        memberWithNullType.setCommunityId(ANY_VALID_ID);
-        memberWithNullType.setType(ANY_VALID_TYPE);
+        CommunityMember memberWithNullType = CommunityMember.builder()
+                .userId(ANY_VALID_ID)
+                .communityId(ANY_VALID_ID)
+                .type(ANY_VALID_TYPE)
+                .build();
 
         //when
         Set<ConstraintViolation<CommunityMember>> violations = validationHelper.validate(memberWithNullType);

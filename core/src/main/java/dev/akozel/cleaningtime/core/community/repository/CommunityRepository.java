@@ -19,5 +19,5 @@ public interface CommunityRepository extends EntityRepository<Community> {
 
     PaginatedItems<Community> find(Long userId);
 
-    void delete(Long id);
+    int delete(Long id);
 }

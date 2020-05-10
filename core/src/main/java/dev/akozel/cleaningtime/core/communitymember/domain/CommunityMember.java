@@ -1,5 +1,6 @@
 package dev.akozel.cleaningtime.core.communitymember.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
  * @author Andrey Kozel
  */
 @Data
+@Builder
 public class CommunityMember {
 
     private Long id;

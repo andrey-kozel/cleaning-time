@@ -14,6 +14,9 @@ migrate-postgres:
 package:
 	@mvn clean package
 
+verify:
+	@mvn clean verify
+
 update-dependencies:
 	@mvn versions:update-properties -DgenerateBackupPoms=false
 

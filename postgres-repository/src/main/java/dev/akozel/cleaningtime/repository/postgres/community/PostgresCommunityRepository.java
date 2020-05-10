@@ -95,8 +95,8 @@ public class PostgresCommunityRepository implements CommunityRepository {
     }
 
     @Override
-    public void delete(Long id) {
-        context.deleteFrom(COMMUNITIES)
+    public int delete(Long id) {
+        return context.deleteFrom(COMMUNITIES)
                 .where(COMMUNITIES.ID.eq(id))
                 .execute();
     }
