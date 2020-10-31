@@ -80,7 +80,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/swagger-resources").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
-                .antMatchers("/swagger-ui.html").permitAll();
+                .antMatchers("/swagger-ui/*").permitAll();
     }
 
     private void makePublicEndpointsAvailable(HttpSecurity http) throws Exception {
