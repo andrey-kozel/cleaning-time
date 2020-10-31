@@ -1,7 +1,7 @@
 package dev.akozel.cleaningtime.core.communitymember.validation;
 
 import dev.akozel.cleaningtime.core.communitymember.domain.CommunityMember;
-import dev.akozel.cleaningtime.core.validation.RulesValidator;
+import dev.akozel.cleaningtime.core.common.validation.RulesValidator;
 
 import javax.inject.Inject;
 import javax.inject.Named;

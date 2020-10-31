@@ -2,7 +2,7 @@ package dev.akozel.cleaningtime.rest.common.exceptionhandling;
 
 import dev.akozel.cleaningtime.rest.common.exceptionhandling.dto.ErrorResponseDto;
 import dev.akozel.cleaningtime.rest.common.exceptionhandling.dto.ErrorType;
-import dev.akozel.cleaningtime.rest.security.jwt.exception.InvalidJwtTokenException;
+import dev.akozel.cleaningtime.rest.auth.exception.InvalidJwtTokenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

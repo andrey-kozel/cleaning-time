@@ -7,7 +7,7 @@ import dev.akozel.cleaningtime.core.communityinvitation.domain.CommunityInvitati
 import dev.akozel.cleaningtime.core.communityinvitation.repository.CommunityInvitationRepository;
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.service.ApplicationUserService;
-import dev.akozel.cleaningtime.core.validation.RulesValidator;
+import dev.akozel.cleaningtime.core.common.validation.RulesValidator;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Rule;

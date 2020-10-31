@@ -1,8 +1,8 @@
 package dev.akozel.cleaningtime.rest.common.exceptionhandling;
 
-import dev.akozel.cleaningtime.core.validation.domain.ValidationError;
-import dev.akozel.cleaningtime.core.validation.domain.ValidationResult;
-import dev.akozel.cleaningtime.core.validation.exception.ApplicationValidationException;
+import dev.akozel.cleaningtime.core.common.validation.domain.ValidationError;
+import dev.akozel.cleaningtime.core.common.validation.domain.ValidationResult;
+import dev.akozel.cleaningtime.core.common.validation.exception.ApplicationValidationException;
 import dev.akozel.cleaningtime.rest.common.exceptionhandling.dto.ErrorEntryDto;
 import dev.akozel.cleaningtime.rest.common.exceptionhandling.dto.ErrorResponseDto;
 import dev.akozel.cleaningtime.rest.common.exceptionhandling.dto.ErrorType;

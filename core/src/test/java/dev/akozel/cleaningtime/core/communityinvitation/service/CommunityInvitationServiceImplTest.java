@@ -6,7 +6,7 @@ import dev.akozel.cleaningtime.core.communityinvitation.repository.CommunityInvi
 import dev.akozel.cleaningtime.core.communityinvitation.validation.CommunityInvitationValidator;
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.service.ApplicationUserService;
-import dev.akozel.cleaningtime.core.validation.exception.ApplicationValidationException;
+import dev.akozel.cleaningtime.core.common.validation.exception.ApplicationValidationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
