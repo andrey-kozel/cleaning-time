@@ -1,6 +1,6 @@
 package dev.akozel.cleaningtime.core.user.service;
 
-import dev.akozel.cleaningtime.core.security.Encoder;
+import dev.akozel.cleaningtime.core.common.security.Encoder;
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
 import dev.akozel.cleaningtime.core.user.repository.ApplicationUserRepository;
 import dev.akozel.cleaningtime.core.user.validation.UserValidator;

@@ -6,7 +6,7 @@ import dev.akozel.cleaningtime.core.community.domain.Community;
 import dev.akozel.cleaningtime.core.community.repository.CommunityRepository;
 import dev.akozel.cleaningtime.core.community.validation.CommunityValidator;
 import dev.akozel.cleaningtime.core.communitymember.service.CommunityMemberService;
-import dev.akozel.cleaningtime.core.validation.exception.ApplicationValidationException;
+import dev.akozel.cleaningtime.core.common.validation.exception.ApplicationValidationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

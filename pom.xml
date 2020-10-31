@@ -40,7 +40,7 @@
         <mapstruct.version>1.4.1.Final</mapstruct.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <testcontainers-postgresql.version>1.15.0-rc2</testcontainers-postgresql.version>
-        <hibernate-validator.version>6.0.2.Final</hibernate-validator.version>
+        <hibernate-validator.version>6.1.6.Final</hibernate-validator.version>
         <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
     </properties>
 

@@ -1,7 +1,7 @@
 package dev.akozel.cleaningtime.core.user.validation;
 
 import dev.akozel.cleaningtime.core.user.domain.ApplicationUser;
-import dev.akozel.cleaningtime.core.validation.RulesValidator;
+import dev.akozel.cleaningtime.core.common.validation.RulesValidator;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
