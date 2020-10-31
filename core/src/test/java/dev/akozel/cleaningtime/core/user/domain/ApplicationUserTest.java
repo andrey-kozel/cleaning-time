@@ -15,8 +15,6 @@ public class ApplicationUserTest {
 
     private static final String VALID_EMAIL = "ANY_VALID_LOGIN";
     private static final String VALID_PASSWORD = "ANY_VALID_PASSWORD";
-    private static final String VALID_FIRST_NAME = "ANY_VALID_FIRST_NAME";
-    private static final String VALID_LAST_NAME = "ANY_VALID_LAST_NAME";
 
     private ValidationHelper validationHelper = new ValidationHelper();
 
