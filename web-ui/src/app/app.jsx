@@ -3,8 +3,6 @@ import {CssBaseline} from "@material-ui/core";
 import {Route, Switch} from "react-router-dom";
 
 import PrivateRoute from "../components/private-route";
-import TokenRefresher from "../components/token-refresher";
-import AppHeader from "../components/header/AppHeaderContainer";
 import NotificationBar from "../components/notification/NotificationBarContainer";
 
 import LoginPage from "../pages/login-page";
@@ -13,13 +11,11 @@ import HomePage from "../pages/home-page";
 import Communities from "../pages/communities/list/CommunitiesContainer";
 import EditCommunity from "../pages/communities/edit/EditCommunityContainer";
 import Reports from "../pages/reports/Reports";
-import IndexPage from "../pages/index-page";
 
 const App = () => {
     return (
         <Fragment>
             <CssBaseline/>
-            <AppHeader/>
             <Switch>
                 <Route path="/login"
                        component={LoginPage}
@@ -27,10 +23,7 @@ const App = () => {
                 <Route path="/registration"
                        component={RegistrationPage}
                        exact/>
-                <Route path="/"
-                       component={IndexPage}
-                       exact/>
-                <PrivateRoute path="/home"
+                <PrivateRoute path={["/", "/home"]}
                               component={HomePage}
                               exact/>
                 <PrivateRoute path="/communities"
@@ -44,7 +37,6 @@ const App = () => {
                               exact/>
             </Switch>
             <NotificationBar/>
-            <TokenRefresher/>
         </Fragment>
     );
 };

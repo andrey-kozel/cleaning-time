@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
+import AuthorizedTemplate from "../../components/authorized-template/AuthorizedTemplate";
 
 const Reports = () => {
     return (
-        <div>Reports</div>
-    )
+        <AuthorizedTemplate>
+            Reports
+        </AuthorizedTemplate>
+    );
 };
 
 export default Reports;

@@ -10,12 +10,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AppHeader = ({accessToken}) => {
+const AppHeader = () => {
     const classes = useStyles();
-
-    if (!accessToken) {
-        return null;
-    }
 
     return (
         <>

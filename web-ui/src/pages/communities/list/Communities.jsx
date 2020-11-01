@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect} from "react";
 import {
     Card,
     CardContent,
@@ -11,17 +11,15 @@ import {
     TableContainer,
     TableHead,
     TableRow
-} from '@material-ui/core';
-import AddCircleSharpIcon from '@material-ui/icons/AddCircleSharp';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import CreateIcon from '@material-ui/icons/Create';
+} from "@material-ui/core";
+import AddCircleSharpIcon from "@material-ui/icons/AddCircleSharp";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import CreateIcon from "@material-ui/icons/Create";
 import {makeStyles} from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
+import AuthorizedTemplate from "../../../components/authorized-template/AuthorizedTemplate";
 
 const useStyles = makeStyles((theme) => ({
-    mainContent: {
-        marginTop: theme.spacing(10)
-    },
     communitiesContent: {
         padding: 0
     }
@@ -38,10 +36,10 @@ const CommunitiesRow = ({index, community, onDelete}) => {
             </TableCell>
             <TableCell>
                 <IconButton component={Link} to={`/community/${community.id}`}>
-                    <CreateIcon />
+                    <CreateIcon/>
                 </IconButton>
                 <IconButton onClick={onDelete}>
-                    <HighlightOffIcon />
+                    <HighlightOffIcon/>
                 </IconButton>
             </TableCell>
         </TableRow>
@@ -62,7 +60,7 @@ const Communities = ({communities, getCommunities, deleteCommunity}) => {
     useEffect(getCommunities, []);
 
     return (
-        <Grid container className={classes.mainContent} justify="center">
+        <AuthorizedTemplate>
             <Grid item xs={11} md={8} lg={6}>
                 <Card>
                     <CardHeader title="Communities" action={<AddCommunityButton/>}/>
@@ -93,7 +91,7 @@ const Communities = ({communities, getCommunities, deleteCommunity}) => {
                     </CardContent>
                 </Card>
             </Grid>
-        </Grid>
+        </AuthorizedTemplate>
     );
 };
 

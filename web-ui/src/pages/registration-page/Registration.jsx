@@ -14,7 +14,7 @@ import {
 import {Link} from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {makeStyles} from "@material-ui/core/styles";
-import GuestTemplate from "../../components/guest/GuestTemplate";
+import GuestTemplate from "../../components/guest-template/GuestTemplate";
 
 const useStyles = makeStyles(theme => ({
     registrationActions: {
