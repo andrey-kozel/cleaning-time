@@ -1,74 +1,27 @@
-import React, {useEffect} from 'react';
-import {Field, Form} from 'formik'
-import {TextField} from 'material-ui-formik-components/TextField'
-import {Button, Card, CardActions, CardContent, CardHeader, Grid} from '@material-ui/core';
-import {makeStyles} from "@material-ui/core/styles";
-import {Link} from "react-router-dom";
-import AuthorizedTemplate from "../../../components/authorized-template/AuthorizedTemplate";
+import React, {useEffect, useState} from "react";
+import cleaningTimeService from "../../../api/CleaningTimeApi";
+import CommunityForm from "../common/CommunityForm";
 
-const useStyles = makeStyles((theme) => ({
-    saveMargin: {
-        marginLeft: theme.spacing(4)
-    }
-}));
-
-const EditCommunity = ({values, ...props}) => {
+const EditCommunity = ({history, ...props}) => {
     const {id} = props.match.params;
-    const {getCommunity, clearCommunity} = props;
-    const classes = useStyles();
+    const [community, setCommunity] = useState({name: ""});
 
-    useEffect(() => getCommunity(id), [getCommunity, id]);
-    useEffect(() => () => clearCommunity(), [clearCommunity]);
+    useEffect(() => getCommunity(), [id]);
+
+    const getCommunity = () => {
+        cleaningTimeService.getCommunity(id)
+            .then(response => setCommunity(response.data));
+    };
+
+    const saveCommunity = (values) => {
+        cleaningTimeService.updateCommunity(id, values)
+            .then(({data}) => setCommunity(data));
+    };
 
     return (
-        <AuthorizedTemplate>
-            <Grid item xs={11} md={8} lg={6}>
-                <Form>
-                    <Card>
-                        <CardHeader title="Community"/>
-                        <CardContent>
-                            <Grid container spacing={2} direction="column">
-                                <Grid item>
-                                    <Field
-                                        component={TextField}
-                                        fullWidth
-                                        value={values.name}
-                                        label="Name"
-                                        name="name"
-                                        margin="normal"
-                                    />
-                                </Grid>
-                            </Grid>
-                        </CardContent>
-                        <CardActions>
-                            <Grid container justify="flex-end">
-                                <Grid item>
-                                    <Button
-                                        component={Link}
-                                        color="secondary"
-                                        fullWidth
-                                        to="/communities"
-                                    >
-                                        Cancel
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button
-                                        variant="contained"
-                                        type="submit"
-                                        className={classes.saveMargin}
-                                        color="primary"
-                                    >
-                                        Save
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </CardActions>
-                    </Card>
-                </Form>
-            </Grid>
-        </AuthorizedTemplate>
-    )
+        <CommunityForm community={community}
+                       saveCommunity={saveCommunity}/>
+    );
 };
 
 export default EditCommunity;

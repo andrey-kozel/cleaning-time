@@ -8,9 +8,10 @@ import NotificationBar from "../components/notification/NotificationBarContainer
 import LoginPage from "../pages/login-page";
 import RegistrationPage from "../pages/registration-page";
 import HomePage from "../pages/home-page";
-import Communities from "../pages/communities/list/CommunitiesContainer";
-import EditCommunity from "../pages/communities/edit/EditCommunityContainer";
+import Communities from "../pages/communities/list/Communities";
+import EditCommunity from "../pages/communities/edit/EditCommunity";
 import Reports from "../pages/reports/Reports";
+import NewCommunity from "../pages/communities/new/NewCommunity";
 
 const App = () => {
     return (
@@ -29,8 +30,11 @@ const App = () => {
                 <PrivateRoute path="/communities"
                               component={Communities}
                               exact/>
-                <PrivateRoute path="/community/:id?"
+                <PrivateRoute path="/community/:id"
                               component={EditCommunity}
+                              exact/>
+                <PrivateRoute path="/community"
+                              component={NewCommunity}
                               exact/>
                 <PrivateRoute path="/reports"
                               component={Reports}

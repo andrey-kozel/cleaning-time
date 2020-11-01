@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Card,
     CardContent,
@@ -18,46 +18,29 @@ import CreateIcon from "@material-ui/icons/Create";
 import {makeStyles} from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
 import AuthorizedTemplate from "../../../components/authorized-template/AuthorizedTemplate";
+import cleaningTimeService from "../../../api/CleaningTimeApi";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     communitiesContent: {
         padding: 0
     }
 }));
 
-const CommunitiesRow = ({index, community, onDelete}) => {
-    return (
-        <TableRow>
-            <TableCell>
-                {index + 1}
-            </TableCell>
-            <TableCell>
-                {community.name}
-            </TableCell>
-            <TableCell>
-                <IconButton component={Link} to={`/community/${community.id}`}>
-                    <CreateIcon/>
-                </IconButton>
-                <IconButton onClick={onDelete}>
-                    <HighlightOffIcon/>
-                </IconButton>
-            </TableCell>
-        </TableRow>
-    );
-};
-
-const AddCommunityButton = () => {
-    return (
-        <IconButton component={Link} to="/community">
-            <AddCircleSharpIcon/>
-        </IconButton>
-    );
-};
-
-const Communities = ({communities, getCommunities, deleteCommunity}) => {
+const Communities = () => {
     const classes = useStyles();
+    const [communities, setCommunities] = useState({items: []});
 
-    useEffect(getCommunities, []);
+    useEffect(() => getCommunities(), []);
+
+    const getCommunities = () => {
+        cleaningTimeService.getCommunities()
+            .then(({data}) => setCommunities(data));
+    };
+
+    const deleteCommunity = (communityId) => {
+        cleaningTimeService.deleteCommunity(communityId)
+            .then(getCommunities);
+    };
 
     return (
         <AuthorizedTemplate>
@@ -92,6 +75,35 @@ const Communities = ({communities, getCommunities, deleteCommunity}) => {
                 </Card>
             </Grid>
         </AuthorizedTemplate>
+    );
+};
+
+const CommunitiesRow = ({index, community, onDelete}) => {
+    return (
+        <TableRow>
+            <TableCell>
+                {index + 1}
+            </TableCell>
+            <TableCell>
+                {community.name}
+            </TableCell>
+            <TableCell>
+                <IconButton component={Link} to={`/community/${community.id}`}>
+                    <CreateIcon/>
+                </IconButton>
+                <IconButton onClick={onDelete}>
+                    <HighlightOffIcon/>
+                </IconButton>
+            </TableCell>
+        </TableRow>
+    );
+};
+
+const AddCommunityButton = () => {
+    return (
+        <IconButton component={Link} to="/community">
+            <AddCircleSharpIcon/>
+        </IconButton>
     );
 };
 
