@@ -1,28 +1,19 @@
 import React from 'react';
-import {Field, Form} from 'formik'
-import {TextField} from 'material-ui-formik-components/TextField'
-import {
-    Avatar,
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    CardHeader,
-    Grid,
-    Typography
-} from '@material-ui/core';
-import {Link} from 'react-router-dom';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import GuestTemplate from "../../components/guest/GuestTemplate";
+import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Grid, Typography} from "@material-ui/core";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
+import {Field, Form} from "formik";
+import {TextField} from "material-ui-formik-components/TextField";
+import {Link} from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles";
-import GuestTemplate from "../../../common/components/guest/GuestTemplate";
 
 const useStyles = makeStyles(theme => ({
-    registrationActions: {
+    loginActions: {
         marginTop: theme.spacing(4)
     }
 }));
 
-const Registration = ({values, dirty}) => {
+const Login = ({values, dirty}) => {
     const classes = useStyles();
 
     return (
@@ -32,12 +23,12 @@ const Registration = ({values, dirty}) => {
                     <CardHeader
                         avatar={
                             <Avatar>
-                                <ExitToAppIcon color="primary"/>
+                                <LockOpenIcon color="primary"/>
                             </Avatar>
                         }
                         title={
                             <Typography variant="h4">
-                                Registration
+                                Login
                             </Typography>
                         }
                     />
@@ -56,7 +47,6 @@ const Registration = ({values, dirty}) => {
                             <Grid item xs={12}>
                                 <Field
                                     component={TextField}
-                                    fullWidth
                                     type="password"
                                     label="Password"
                                     name="password"
@@ -64,33 +54,22 @@ const Registration = ({values, dirty}) => {
                                     margin="normal"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
-                                <Field
-                                    component={TextField}
-                                    fullWidth
-                                    type="password"
-                                    label="Password confirmation"
-                                    name="passwordConfirmation"
-                                    value={values.passwordConfirmation}
-                                    margin="normal"
-                                />
-                            </Grid>
                         </Grid>
                     </CardContent>
-                    <CardActions className={classes.registrationActions}>
+                    <CardActions className={classes.loginActions}>
                         <Grid container direction="row" spacing={1}>
-                            <Grid item xs={false} sm={4}/>
-                            <Grid item xs={12} sm={4}>
+                            <Grid item xs={false} md={4}/>
+                            <Grid item xs={12} md={4}>
                                 <Button
                                     component={Link}
                                     color="secondary"
                                     fullWidth
-                                    to="/login"
+                                    to="/registration"
                                 >
-                                    Login
+                                    Sign up
                                 </Button>
                             </Grid>
-                            <Grid item xs={12} sm={4}>
+                            <Grid item xs={12} md={4}>
                                 <Button
                                     disabled={!dirty}
                                     type="submit"
@@ -98,7 +77,7 @@ const Registration = ({values, dirty}) => {
                                     color="primary"
                                     fullWidth
                                 >
-                                    Register
+                                    Login
                                 </Button>
                             </Grid>
                         </Grid>
@@ -109,4 +88,4 @@ const Registration = ({values, dirty}) => {
     );
 };
 
-export default Registration;
+export default Login;

@@ -1,19 +1,19 @@
-import React, {Fragment} from 'react'
+import React, {Fragment} from "react";
 import {CssBaseline} from "@material-ui/core";
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch} from "react-router-dom";
 
-import PrivateRoute from "../common/components/private-route";
+import PrivateRoute from "../components/private-route";
+import TokenRefresher from "../components/token-refresher";
+import AppHeader from "../components/header/AppHeaderContainer";
+import NotificationBar from "../components/notification/NotificationBarContainer";
 
-import TokenRefresher from '../features/components/token-refresher'
-import LoginPage from "../features/components/login-page";
-import RegistrationPage from "../features/components/registration-page";
-import HomePage from '../features/components/home-page'
-import AppHeader from "../features/components/header/AppHeaderContainer";
-import Communities from "../features/components/communities/list/CommunitiesContainer";
-import EditCommunity from "../features/components/communities/edit/EditCommunityContainer";
-import Reports from "../features/components/reports/Reports";
-import IndexPage from "../features/components/index-page";
-import NotificationBar from "../common/components/notification/NotificationBarContainer";
+import LoginPage from "../pages/login-page";
+import RegistrationPage from "../pages/registration-page";
+import HomePage from "../pages/home-page";
+import Communities from "../pages/communities/list/CommunitiesContainer";
+import EditCommunity from "../pages/communities/edit/EditCommunityContainer";
+import Reports from "../pages/reports/Reports";
+import IndexPage from "../pages/index-page";
 
 const App = () => {
     return (
@@ -46,7 +46,7 @@ const App = () => {
             <NotificationBar/>
             <TokenRefresher/>
         </Fragment>
-    )
+    );
 };
 
 export default App;

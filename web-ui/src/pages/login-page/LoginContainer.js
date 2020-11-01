@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import {performLogin} from "../../../common/components/auth/ducks";
+import {performLogin} from "../../components/auth/ducks";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {withFormik} from "formik";

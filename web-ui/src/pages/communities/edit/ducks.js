@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import cleaningTimeService from '../../../../common/services/cleaning-time-service';
-import {showSuccess, showError} from "../../../../common/components/notification/ducks";
+import cleaningTimeService from '../../../api/CleaningTimeApi';
+import {showSuccess, showError} from "../../../components/notification/ducks";
 
 const editCommunitySlice = createSlice({
     name: 'editCommunity',

@@ -1,15 +1,15 @@
-import React from 'react';
-import {Grid} from '@material-ui/core';
+import React from "react";
+import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
-import Background from '../../../assets/6ed268aa48e1f88b6d8e4a761dc83e5418cae11e-min.jpg'
+import Background from "../../resources/images/unauthorized-background.jpg";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     loginBackground: {
         backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${Background})`,
-        backgroundSize: 'cover',
-        minHeight: '100vh',
-        minWidth: '100%'
+        backgroundSize: "cover",
+        minHeight: "100vh",
+        minWidth: "100%"
     }
 }));
 

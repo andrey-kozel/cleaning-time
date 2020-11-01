@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import cleaningTimeService from '../../../../common/services/cleaning-time-service';
+import cleaningTimeService from '../../../api/CleaningTimeApi';
 
 const communitiesSlice = createSlice({
     name: "communities",
