@@ -1,5 +1,5 @@
 import React from 'react';
-import GuestTemplate from "../../components/guest/GuestTemplate";
+import GuestTemplate from "../../components/guest-template/GuestTemplate";
 import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Grid, Typography} from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import {Field, Form} from "formik";

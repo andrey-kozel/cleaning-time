@@ -4,14 +4,9 @@ import {TextField} from 'material-ui-formik-components/TextField'
 import {Button, Card, CardActions, CardContent, CardHeader, Grid} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
+import AuthorizedTemplate from "../../../components/authorized-template/AuthorizedTemplate";
 
 const useStyles = makeStyles((theme) => ({
-    mainContent: {
-        marginTop: theme.spacing(10)
-    },
-    communitiesContent: {
-        padding: 0
-    },
     saveMargin: {
         marginLeft: theme.spacing(4)
     }
@@ -26,7 +21,7 @@ const EditCommunity = ({values, ...props}) => {
     useEffect(() => () => clearCommunity(), [clearCommunity]);
 
     return (
-        <Grid container className={classes.mainContent} justify="center">
+        <AuthorizedTemplate>
             <Grid item xs={11} md={8} lg={6}>
                 <Form>
                     <Card>
@@ -72,7 +67,7 @@ const EditCommunity = ({values, ...props}) => {
                     </Card>
                 </Form>
             </Grid>
-        </Grid>
+        </AuthorizedTemplate>
     )
 };
 
