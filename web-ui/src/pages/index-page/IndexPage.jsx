@@ -1,6 +1,6 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import {getAccessToken} from "../../../common/utils/token";
+import {getAccessToken} from "../../utils/token";
 
 const IndexPage = ({switchPage}) => {
     const token = getAccessToken();

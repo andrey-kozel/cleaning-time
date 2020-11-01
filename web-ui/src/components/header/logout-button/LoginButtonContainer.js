@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 
 import LogoutButton from "./LogoutButton";
-import {performLogout} from "../../../../common/components/auth/ducks";
+import {performLogout} from "../../auth/ducks";
 
 const mapDispatchToProps = {
     performLogout

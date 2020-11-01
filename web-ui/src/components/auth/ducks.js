@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 import {getAccessToken} from "../../utils/token";
-import cleaningTimeService from "../../services/cleaning-time-service";
+import cleaningTimeService from "../../api/CleaningTimeApi";
 
 const authSlice = createSlice({
     name: 'auth',

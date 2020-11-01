@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getAccessToken, isExpiredInASeconds} from "../../../common/utils/token";
-import cleaningTimeService from '../../../common/services/cleaning-time-service';
+import {getAccessToken, isExpiredInASeconds} from "../../utils/token";
+import cleaningTimeService from '../../api/CleaningTimeApi';
 
 const refreshSlice = createSlice({
     name: 'refresh',

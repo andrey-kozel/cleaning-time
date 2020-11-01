@@ -1,7 +1,7 @@
 import axios from '../utils/api'
 import {getAccessToken} from "../utils/token";
 
-class CleaningTimeService {
+class CleaningTimeApi {
 
     loginUser(credentials) {
         return axios.post('auth', credentials);
@@ -43,4 +43,4 @@ class CleaningTimeService {
 
 }
 
-export default new CleaningTimeService();
+export default new CleaningTimeApi();

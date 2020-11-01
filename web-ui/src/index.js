@@ -5,8 +5,8 @@ import {ThemeProvider} from '@material-ui/core/styles'
 import {BrowserRouter as Router} from "react-router-dom";
 
 import store from './app/store'
-import ErrorBoundary from "./common/components/error-handling";
-import App from './app';
+import ErrorBoundary from "./components/error-handling";
+import App from './app/app';
 import theme from './app/theme'
 
 ReactDOM.render(
