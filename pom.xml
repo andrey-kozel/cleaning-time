@@ -22,7 +22,7 @@
         <mockito-core.version>3.6.0</mockito-core.version>
         <assertj-core.version>3.18.0</assertj-core.version>
         <commons-lang3.version>3.11</commons-lang3.version>
-        <commons-text.version>1.9</commons-text.version>
+        <commons-text.version>1.10.0</commons-text.version>
         <catch-exception.version>2.0</catch-exception.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
